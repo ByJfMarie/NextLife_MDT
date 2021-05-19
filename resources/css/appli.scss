@@ -1,0 +1,45 @@
+
+
+.home-container {
+
+    h1 {
+        font-family: 'Lato', sans-serif;
+        color: #ffffff;
+        text-align: center;
+        padding-top: 25vh;
+    }
+
+    .menu-container {
+        //border: 1px solid crimson;
+        height: 25vh;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        .menu-home{
+            display: flex;
+            width: 50%;
+            justify-content: space-around;
+            //border: 1px solid crimson;
+
+            a{
+                font-family: 'Lato', sans-serif;
+                color: #AEAEAE;
+                padding: 5px 25px;
+                font-size: 25px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+                border: 1px solid #C1BB4D;
+
+                &:hover {
+                    opacity: 0.8;
+                    color: #212332;
+                    background-color: #C1BB4D;
+                }
+            }
+        }
+    }
+}
+

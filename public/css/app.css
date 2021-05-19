@@ -1,0 +1,12 @@
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html{
+    background-image: url(/images/LSPD_CAD.png?386636b8cd7ce3b791d1a3867a246465);
+    max-height: 100vh;
+    overflow-x: hidden;
+}
