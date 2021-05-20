@@ -1,6 +1,6 @@
 <template>
     <div>
-        Welcome {{ name }}
+        Bonjour {{ grade }} {{ name }} - {{ matricule }}
     </div>
     <a class="nav-item nav-link" style="cursor: pointer;" @click="logout">Logout</a>
 </template>
@@ -11,11 +11,15 @@ export default {
     data() {
         return {
             name: null,
+            grade: null,
+            matricule: null
         }
     },
     created() {
         if (window.Laravel.user) {
             this.name = window.Laravel.user.name
+            this.grade = window.Laravel.user.grade
+            this.matricule = window.Laravel.user.matricule
         }
     },
     beforeRouteEnter(to, from, next) {

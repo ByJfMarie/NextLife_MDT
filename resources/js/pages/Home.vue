@@ -14,6 +14,11 @@
                 <router-link to="/register" class="nav-item nav-link">Nouvelle Recrue</router-link>
             </div>
         </div>
+
+        <div class="submenu-container">
+            <router-link to="/login" class="nav-item nav-link">Recrutement LSPD</router-link>
+            <router-link to="/register" class="nav-item nav-link">Recrutement LSSD</router-link>
+        </div>
        
     </div>
 </template>

@@ -19,6 +19,7 @@ class UserController extends Controller
         try {
             $user = new User();
             $user->name = $request->name;
+            $user->matricule = $request->matricule;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->save();

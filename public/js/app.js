@@ -16836,12 +16836,16 @@ __webpack_require__.r(__webpack_exports__);
   name: "Dashboard",
   data: function data() {
     return {
-      name: null
+      name: null,
+      grade: null,
+      matricule: null
     };
   },
   created: function created() {
     if (window.Laravel.user) {
       this.name = window.Laravel.user.name;
+      this.grade = window.Laravel.user.grade;
+      this.matricule = window.Laravel.user.matricule;
     }
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
@@ -16974,6 +16978,7 @@ __webpack_require__.r(__webpack_exports__);
       name: "",
       email: "",
       password: "",
+      matricule: "",
       access_token: "",
       error: null
     };
@@ -16989,6 +16994,7 @@ __webpack_require__.r(__webpack_exports__);
           axios.get('/sanctum/csrf-cookie').then(function (response) {
             axios.post('api/register', {
               name: _this.name,
+              matricule: _this.matricule,
               email: _this.email,
               password: _this.password
             }).then(function (response) {
@@ -17086,7 +17092,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, " Welcome " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, " Bonjour " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.grade) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.name) + " - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.matricule), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("a", {
     "class": "nav-item nav-link",
@@ -17148,6 +17154,14 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Nouvelle Recrue");
 
+var _hoisted_9 = {
+  "class": "submenu-container"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Recrutement LSPD");
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Recrutement LSSD");
+
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
@@ -17183,7 +17197,27 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     _: 1
     /* STABLE */
 
-  })]))])]);
+  })]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/login",
+    "class": "nav-item nav-link"
+  }, {
+    "default": _withId(function () {
+      return [_hoisted_10];
+    }),
+    _: 1
+    /* STABLE */
+
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/register",
+    "class": "nav-item nav-link"
+  }, {
+    "default": _withId(function () {
+      return [_hoisted_11];
+    }),
+    _: 1
+    /* STABLE */
+
+  })])]);
 });
 
 /***/ }),
@@ -17371,9 +17405,9 @@ var _hoisted_11 = {
 };
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "email",
+  "for": "matricule",
   "class": "col-sm-4 col-form-label text-md-right"
-}, "Adresse Email", -1
+}, "Matricule", -1
 /* HOISTED */
 );
 
@@ -17385,9 +17419,9 @@ var _hoisted_14 = {
 };
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "password",
-  "class": "col-md-4 col-form-label text-md-right"
-}, "Mot de Passe", -1
+  "for": "email",
+  "class": "col-sm-4 col-form-label text-md-right"
+}, "Adresse Email", -1
 /* HOISTED */
 );
 
@@ -17399,9 +17433,9 @@ var _hoisted_17 = {
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
-  "for": "access-token",
+  "for": "password",
   "class": "col-md-4 col-form-label text-md-right"
-}, "Access Token", -1
+}, "Mot de Passe", -1
 /* HOISTED */
 );
 
@@ -17409,9 +17443,23 @@ var _hoisted_19 = {
   "class": "col-md-6"
 };
 var _hoisted_20 = {
+  "class": "form-group row"
+};
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "access-token",
+  "class": "col-md-4 col-form-label text-md-right"
+}, "Access Token", -1
+/* HOISTED */
+);
+
+var _hoisted_22 = {
+  "class": "col-md-6"
+};
+var _hoisted_23 = {
   "class": "form-group row mb-0"
 };
-var _hoisted_21 = {
+var _hoisted_24 = {
   "class": "col-md-8 offset-md-4"
 };
 
@@ -17434,11 +17482,24 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.name]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    id: "matricule",
+    type: "text",
+    placeholder: "44",
+    "class": "form-control",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.matricule = $event;
+    }),
+    required: "",
+    autofocus: "",
+    autocomplete: "off"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.matricule]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     id: "email",
     type: "email",
     placeholder: "rmarquez@discord.gg",
     "class": "form-control",
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $data.email = $event;
     }),
     required: "",
@@ -17446,33 +17507,33 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     autocomplete: "off"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.email]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     id: "password",
     type: "password",
     "class": "form-control",
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.password = $event;
     }),
     required: "",
     autocomplete: "off"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.password]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.password]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     id: "access-token",
     type: "text",
     placeholder: "Délivré par le supérieur",
     "class": "form-control",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.access_token = $event;
     }),
     required: "",
     autocomplete: "off"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.access_token]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.access_token]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     type: "submit",
     "class": "btn btn-primary",
-    onClick: _cache[5] || (_cache[5] = function () {
+    onClick: _cache[6] || (_cache[6] = function () {
       return $options.handleSubmit && $options.handleSubmit.apply($options, arguments);
     })
   }, " S'enregistrer ")])])])])])])])]);
@@ -17657,7 +17718,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".home-container h1[data-v-b3c5cf30] {\n  font-family: 'Lato', sans-serif;\n  color: #ffffff;\n  text-align: center;\n  padding-top: 25vh;\n}\n.home-container .menu-container[data-v-b3c5cf30] {\n  height: 25vh;\n  display: flex;\n  justify-content: center;\n  align-items: flex-end;\n}\n.home-container .menu-container .menu-home[data-v-b3c5cf30] {\n  display: flex;\n  width: 50%;\n  justify-content: space-around;\n}\n.home-container .menu-container .menu-home a[data-v-b3c5cf30] {\n  font-family: 'Lato', sans-serif;\n  color: #AEAEAE;\n  padding: 5px 25px;\n  font-size: 25px;\n  font-weight: 600;\n  letter-spacing: .1rem;\n  text-decoration: none;\n  text-transform: uppercase;\n  border: 1px solid #C1BB4D;\n}\n.home-container .menu-container .menu-home a[data-v-b3c5cf30]:hover {\n  opacity: 0.8;\n  color: #212332;\n  background-color: #C1BB4D;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".home-container h1[data-v-b3c5cf30] {\n  font-family: 'Lato', sans-serif;\n  color: #ffffff;\n  text-align: center;\n  margin-top: 30vh;\n}\n.home-container .menu-container[data-v-b3c5cf30] {\n  margin-top: 0vh;\n  height: 25vh;\n  display: flex;\n  justify-content: center;\n  align-items: flex-end;\n}\n.home-container .menu-container .menu-home[data-v-b3c5cf30] {\n  display: flex;\n  flex-direction: column;\n  width: 50%;\n  justify-content: flex-end;\n  align-items: center;\n}\n.home-container .menu-container .menu-home a[data-v-b3c5cf30] {\n  font-family: 'Lato', sans-serif;\n  color: #AEAEAE;\n  padding: 5px 25px;\n  font-size: 25px;\n  font-weight: 600;\n  letter-spacing: .1rem;\n  text-decoration: none;\n  text-transform: uppercase;\n  border: 1px solid #C1BB4D;\n  margin-bottom: 4vh;\n  width: 370px;\n  text-align: center;\n}\n.home-container .menu-container .menu-home a[data-v-b3c5cf30]:hover {\n  opacity: 0.8;\n  color: #212332;\n  background-color: #C1BB4D;\n}\n.home-container .submenu-container[data-v-b3c5cf30] {\n  display: flex;\n  margin-left: 15%;\n  margin-top: 35vh;\n  width: 70%;\n  justify-content: space-around;\n}\n.home-container .submenu-container a[data-v-b3c5cf30] {\n  text-decoration: none;\n  color: #AEAEAE;\n  text-transform: uppercase;\n  font-family: 'Lato', sans-serif;\n  font-size: 20px;\n}\n.home-container .submenu-container a[data-v-b3c5cf30]:hover {\n  color: #AEAEAE;\n}\n.home-container .submenu-container a[data-v-b3c5cf30]::after {\n  content: '';\n  width: 0;\n  display: block;\n  height: 2px;\n  margin-top: 2px;\n  background-color: #C1BB4D;\n  transition: width .3s;\n}\n.home-container .submenu-container a[data-v-b3c5cf30]:hover::after {\n  width: 100%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
