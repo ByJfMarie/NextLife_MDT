@@ -86,4 +86,56 @@ class UserController extends Controller
         ];
         return response()->json($response);
     }
+
+    public function index()
+    {
+        $users = User::select(
+
+            "users.id", 
+
+            "users.name",
+            
+            "users.matricule",
+
+            "grades.libelle as grade",
+
+            "users.email", 
+
+        )
+
+        ->join("grades", "grades.code", "=", "users.grade")
+
+
+        ->get();
+
+        return $users;
+    }
+
+    public function show(User $user)
+    {   
+
+        $users = User::select(
+
+            "users.id", 
+
+            "users.name",
+            
+            "users.matricule",
+
+            "grades.libelle as grade",
+
+            "users.email", 
+
+        )
+
+        ->join("grades", "grades.code", "=", "users.grade")
+
+        ->where("users.id", "=", $user->id)
+
+        ->get();
+
+
+        return $users;
+    }
+
 }
