@@ -5,6 +5,7 @@ import About from '../pages/About';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
+import SIV from '../pages/SIV.vue';
 
 
 export const routes = [
@@ -32,6 +33,11 @@ export const routes = [
         name: 'dashboard',
         path: '/dashboard',
         component: Dashboard
+    },
+    {
+        name: 'siv',
+        path: '/siv',
+        component: SIV
     }
 ];
 

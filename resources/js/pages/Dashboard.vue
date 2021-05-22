@@ -2,7 +2,7 @@
     <div class="dash-container">
        <h1>Bonjour {{ grade }} {{ name }} - {{ matricule }}</h1>
        <div class="button-container">
-           <router-link to="/login" class="nav-item nav-link">SIV</router-link>
+           <router-link to="/siv" class="nav-item nav-link">SIV</router-link>
            <router-link to="/login" class="nav-item nav-link">TAJ</router-link>
            <router-link to="/login" class="nav-item nav-link">Etat-Major</router-link>
            <a class="logout" style="cursor: pointer;" @click="logout">Sortir du M.D.T / C.A.D</a>
