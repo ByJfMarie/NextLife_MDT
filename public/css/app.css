@@ -7,6 +7,8 @@
 
 html{
     background-image: url(/images/LSPD_CAD.png?386636b8cd7ce3b791d1a3867a246465);
+    background-size: cover;
+    background-repeat: no-repeat;
     max-height: 100vh;
     overflow-x: hidden;
 }
