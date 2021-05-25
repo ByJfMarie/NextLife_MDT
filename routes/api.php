@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CitoyenController;
 use App\Http\Controllers\API\UserController;
 
 Route::post('login', [UserController::class, 'login']);
@@ -10,3 +11,4 @@ Route::post('logout', [UserController::class, 'logout'])->middleware('auth:sanct
 
 Route::apiResource('users', UserController::class);
 
+Route::apiResource('citoyens', CitoyenController::class);

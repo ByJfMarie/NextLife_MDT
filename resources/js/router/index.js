@@ -6,7 +6,8 @@ import Register from '../pages/Register';
 import Login from '../pages/Login';
 import Dashboard from '../pages/Dashboard';
 import SIV from '../pages/SIV.vue';
-import Create_Citoyen from '../pages/add_citoyen'
+import TAJ from '../pages/TAJ.vue';
+import Create_Citoyen from '../pages/add_citoyen';
 
 
 export const routes = [
@@ -39,6 +40,11 @@ export const routes = [
         name: 'siv',
         path: '/siv',
         component: SIV
+    },
+    {
+        name: 'taj',
+        path: '/taj',
+        component: TAJ
     },
     {
         name: 'create_citoyen',

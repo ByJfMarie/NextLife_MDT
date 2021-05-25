@@ -17179,7 +17179,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     /* STABLE */
 
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/login",
+    to: "/taj",
     "class": "nav-item nav-link"
   }, {
     "default": _withId(function () {
@@ -17783,14 +17783,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "routes": () => (/* binding */ routes),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Home */ "./resources/js/pages/Home.vue");
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/About */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Register */ "./resources/js/pages/Register.vue");
 /* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../pages/Login */ "./resources/js/pages/Login.vue");
 /* harmony import */ var _pages_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../pages/Dashboard */ "./resources/js/pages/Dashboard.vue");
 /* harmony import */ var _pages_SIV_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pages/SIV.vue */ "./resources/js/pages/SIV.vue");
-/* harmony import */ var _pages_add_citoyen__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/add_citoyen */ "./resources/js/pages/add_citoyen.vue");
+/* harmony import */ var _pages_TAJ_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/TAJ.vue */ "./resources/js/pages/TAJ.vue");
+/* harmony import */ var _pages_add_citoyen__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/add_citoyen */ "./resources/js/pages/add_citoyen.vue");
+
 
 
 
@@ -17824,12 +17826,16 @@ var routes = [{
   path: '/siv',
   component: _pages_SIV_vue__WEBPACK_IMPORTED_MODULE_5__.default
 }, {
+  name: 'taj',
+  path: '/taj',
+  component: _pages_TAJ_vue__WEBPACK_IMPORTED_MODULE_6__.default
+}, {
   name: 'create_citoyen',
   path: '/create',
-  component: _pages_add_citoyen__WEBPACK_IMPORTED_MODULE_6__.default
+  component: _pages_add_citoyen__WEBPACK_IMPORTED_MODULE_7__.default
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_7__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_7__.createWebHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_8__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_8__.createWebHistory)(),
   routes: routes
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -35708,6 +35714,24 @@ if (false) {}
 _SIV_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/pages/SIV.vue"
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_SIV_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
+/***/ "./resources/js/pages/TAJ.vue":
+/*!************************************!*\
+  !*** ./resources/js/pages/TAJ.vue ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const script = {}
+script.__file = "resources/js/pages/TAJ.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (script);
 
 /***/ }),
 

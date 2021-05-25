@@ -101,7 +101,7 @@ class CitoyenController extends Controller
      */
     public function show(Citoyen $citoyen)
     {
-        //
+        return $citoyen;
     }
 
     /**
