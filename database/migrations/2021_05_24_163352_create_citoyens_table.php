@@ -22,7 +22,7 @@ class CreateCitoyensTable extends Migration
             $table->text('type');
             $table->text('adresse');
             $table->text('telephone');
-            $table->binary('photo');
+            $table->string('photo_path');
             $table->boolean('driveLicense')->default(false);
             $table->boolean('weaponLicense')->default(false);
             $table->boolean('isWanted')->default(false);
