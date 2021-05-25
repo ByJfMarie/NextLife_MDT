@@ -17655,23 +17655,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../../storage/app/public/images/0TDoYhHP1Ho0wXFjHcELRxto3ekHKCsSSXcMQdnq.png'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "SIV Page", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  src: Object(function webpackMissingModule() { var e = new Error("Cannot find module '../../../storage/app/public/images/0TDoYhHP1Ho0wXFjHcELRxto3ekHKCsSSXcMQdnq.png'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()),
-  alt: ""
-}, null, -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1, _hoisted_2]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <img src=\"../../../storage/app/public/images/0TDoYhHP1Ho0wXFjHcELRxto3ekHKCsSSXcMQdnq.png\" alt=\"\"> ")]);
 }
 
 /***/ }),
