@@ -17684,23 +17684,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _storage_app_public_citoyens_WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM_png__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../storage/app/public/citoyens/WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM.png */ "./storage/app/public/citoyens/WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM.png");
-
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "SIV Page", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-  src: _storage_app_public_citoyens_WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM_png__WEBPACK_IMPORTED_MODULE_1__.default,
-  alt: ""
-}, null, -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1, _hoisted_2]);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [_hoisted_1]);
 }
 
 /***/ }),
@@ -18192,21 +18183,6 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
-
-/***/ }),
-
-/***/ "./storage/app/public/citoyens/WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM.png":
-/*!**********************************************************************************!*\
-  !*** ./storage/app/public/citoyens/WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM.png ***!
-  \**********************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/WkWaYq5WFWO4YMAl8zIywdwv9pt6qbceEtTZ3uUM.png?628bee7a480f4a0c6d211e1e49e9d0e8");
 
 /***/ }),
 
