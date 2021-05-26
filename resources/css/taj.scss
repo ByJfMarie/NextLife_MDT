@@ -1,4 +1,93 @@
-.card{
-    border: 1px solid crimson;
+
+.content{
     display: flex;
+    justify-content: space-around;
+    margin-top: 35vh;
 }
+
+.cards-container{
+    display: flex;
+    flex-direction: column;
+    //flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    background: rgba(180, 175, 175, 0.04);
+    border: 1px solid #AD9B3A;
+    height: 60vh;
+    width: 130vh;
+    overflow: auto;
+
+    .card{
+        display: flex;
+        align-items: center;
+        border: 1px solid #AD9B3A;
+        background: rgba(180, 175, 175, 0.17);
+        margin-top: 2%;
+        width: 95%;
+        height: 8%;
+
+        &:hover{
+            scale: 1.02;
+            cursor: pointer;
+        }
+
+        .infos-container{
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+
+            p{
+                font-family: Roboto;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 20px;
+                line-height: 27px;
+                color: #EFEFEF;
+                margin-left: 3%;
+            }
+        }
+    }
+
+
+    // .card{
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    //     justify-content: space-around;
+    //     width: 30%;
+    //     height: 85%;
+    //     background: rgba(180, 175, 175, 0.17);
+    //     border: 1px solid #AD9B3A;
+    //     margin-top: 3.5%;
+
+    //     &:hover{
+    //         cursor: pointer;
+    //         scale: 1.02;
+    //     }
+
+    //     .image-container{
+    //         width: 45%;
+    //         height: 33%;
+    //     }
+
+    //     .infos-container{
+    //         align-self: flex-start;
+    //         margin-left: 15%;
+    //         display: flex;
+    //         flex-direction: column;
+    //         justify-content: flex-start;
+    //         align-items: stretch;
+
+    //         p{
+    //             font-family: Roboto;
+    //             font-style: normal;
+    //             font-weight: normal;
+    //             font-size: 23px;
+    //             line-height: 27px;
+    //             color: #EFEFEF;
+    //             margin-bottom: 10%;
+    //         }
+    //     }
+    // }
+}
+
