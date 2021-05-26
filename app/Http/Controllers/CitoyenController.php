@@ -14,7 +14,7 @@ class CitoyenController extends Controller
      */
     public function index()
     {
-        //
+        return Citoyen::all();
     }
 
     /**
@@ -56,6 +56,8 @@ class CitoyenController extends Controller
             // Save the file locally in the storage/public/ folder under a new folder named /product
             $path = $request->file('photo_path')->store('public/citoyens');
 
+            $realpath = explode("/", $path, 2);
+
             $convertDrive = $request->get('driveLicense');
             $convertWeapon = $request->get('weaponLicense'); 
 
@@ -82,7 +84,7 @@ class CitoyenController extends Controller
             $citoyens->type = $request->get('type');
             $citoyens->adresse = $request->get('adresse');
             $citoyens->telephone = $request->get('telephone');
-            $citoyens->photo_path = $path;
+            $citoyens->photo_path = $realpath[1];
             $citoyens->driveLicense = $driveLicense ;
             $citoyens->weaponLicense = $weaponLicense;
             
