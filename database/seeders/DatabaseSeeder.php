@@ -39,5 +39,18 @@ class DatabaseSeeder extends Seeder
             'code' => 'LSPD_CM',
             'libelle' => 'Commandant',
         ]);
+
+        \App\Models\Citoyen::factory(1)->create([
+            'nom' => 'Concitoyen',
+            'prenom' => 'Mr',
+            'dateDeNaissance' => '1900-01-01',
+            'civilite' => 'Non-Binaire',
+            'type' => 'Lambda',
+            'adresse' => 'Los Santos',
+            'telephone' => '000-0000',
+            'photo_path' => 'citoyens/GMGrLlDcP35XBVMuAl0UO51XViuFSzlUKjJqAJhQ.png',
+    
+        ]);
     }
 }
+

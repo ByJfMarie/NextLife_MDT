@@ -6,17 +6,27 @@
                 <h1>heelo</h1>
             </div>
 
-            <div class="cards-container">
+            <div class="right">
                 
-                <div class="card" v-for="data in datas">
-                    <!-- <div class="image-container">
-                        <img :src="`/storage/${data.photo_path}`" alt="">
-                    </div> -->
-                    <div class="infos-container">
-                        <p>{{data.id}}</p>
-                        <p>{{data.prenom}} {{data.nom}}</p>
-                        <p>{{data.telephone}}</p>
-                        <p>{{data.adresse}}</p> 
+                <div class="buttons">
+                    <router-link to="/taj/create" class="nav-item nav-link">Ajouter</router-link>
+                    <router-link to="/taj" class="nav-item nav-link">Modifier</router-link>
+                    <router-link to="/taj/amende" class="nav-item nav-link">Créer une amende</router-link>
+                    <router-link to="/dashboard" class="logout">Retour Dashboard</router-link>
+                </div>
+                
+                <div class="cards-container">
+                    
+                    <div class="card" v-for="data in datas">
+                        <!-- <div class="image-container">
+                            <img :src="`/storage/${data.photo_path}`" alt="">
+                        </div> -->
+                        <div class="infos-container">
+                            <p>{{data.id}}</p>
+                            <p>{{data.prenom}} {{data.nom}}</p>
+                            <p>{{data.telephone}}</p>
+                            <p>{{data.adresse}}</p> 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -38,9 +48,15 @@ export default {
 
                 this.datas = response.data;
             })
-    }
+    },
+    beforeRouteEnter(to, from, next) {
+        if (!window.Laravel.isLoggedin) {
+            window.location.href = "/";
+        }
+        next();
+    },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     @import "../../css/taj.scss";
 </style>

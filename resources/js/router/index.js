@@ -8,6 +8,8 @@ import Dashboard from '../pages/Dashboard';
 import SIV from '../pages/SIV.vue';
 import TAJ from '../pages/TAJ.vue';
 import Create_Citoyen from '../pages/add_citoyen';
+import Create_Vehicule from '../pages/add_vehicule';
+import Amendes from '../pages/amendes';
 
 
 export const routes = [
@@ -42,14 +44,24 @@ export const routes = [
         component: SIV
     },
     {
+        name: 'create_vehicule',
+        path: '/siv/create',
+        component: Create_Vehicule
+    },
+    {
         name: 'taj',
         path: '/taj',
         component: TAJ
     },
     {
         name: 'create_citoyen',
-        path: '/create',
+        path: '/taj/create',
         component: Create_Citoyen
+    },
+    {
+        name: 'amendes',
+        path: '/taj/amende',
+        component: Amendes
     }
 ];
 

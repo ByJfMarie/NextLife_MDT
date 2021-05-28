@@ -9,28 +9,30 @@
             <div class="right">
                 
                 <div class="buttons">
-                    <router-link to="/siv/create" class="nav-item nav-link">Ajouter</router-link>
-                    <router-link to="/taj" class="nav-item nav-link">Modifier</router-link>
-                    <router-link to="/login" class="nav-item nav-link">Supprimer</router-link>
+                    <router-link to="/taj/create" class="nav-item nav-link">ID Citoyen</router-link>
+                    <router-link to="/taj" class="nav-item nav-link search">Recherche Mot Clé</router-link>
                     <router-link to="/dashboard" class="logout">Retour Dashboard</router-link>
                 </div>
                 
                 <div class="cards-container">
                     
                     <div class="card" v-for="data in datas">
-                    <!-- <div class="image-container">
-                        <img :src="`/storage/${data.photo_path}`" alt="">
-                    </div> -->
+                        <!-- <div class="image-container">
+                            <img :src="`/storage/${data.photo_path}`" alt="">
+                        </div> -->
                         <div class="infos-container">
-                            <p>{{data.id}}</p>
-                            <p>{{data.immatriculation}}</p>
-                            <p>{{data.modele}} - {{data.type}}</p> 
-                            <p>{{data.prenom_proprio}} {{data.nom_proprio}}</p>
+                            <div class="p">
+
+                                <p>{{data.descritpion}}</p>
+                                <p>-</p>
+                                <p>{{data.prix}} $</p>
+                            </div>
+                            <button class="addToCart" style="justify-self: flex-end;"></button>
                         </div>
                     </div>
                 </div>
-            
             </div>
+
         </div>
     </div>
 </template>
@@ -42,7 +44,7 @@ export default {
         }
     },
     created() {
-        this.$axios.get('/api/vehicules')
+        this.$axios.get('/api/liste_amendes')
             .then(response => {
             // JSON responses are automatically parsed.
 
@@ -54,9 +56,10 @@ export default {
             window.location.href = "/";
         }
         next();
-    },
+    }
 }
 </script>
 <style lang="scss" scoped>
-    @import "../../css/siv.scss";
+    @import "../../css/amendes.scss";
+    @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 </style>
