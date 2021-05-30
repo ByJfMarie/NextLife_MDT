@@ -4,6 +4,71 @@
     justify-content: space-around;
     margin-top: 25vh;
     height: 70vh;
+    text-align: center;
+
+    .left{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        .total{
+            color: white;
+            font-family: 'Lato', sans-serif;
+            font-size: 34px;
+            margin-top: 5%;
+        }
+
+        .cart-container{
+            padding:10px 20px ;
+            font-family: 'Lato', sans-serif;
+            color: #AEAEAE;
+            border: 1px solid #C1BB4D;
+            height: 40vh;
+            width: 50vh;
+            overflow-x: auto;
+            text-align: left;
+
+            .cart-item{
+                margin-bottom: 15px;
+                h1{
+                    font-size: 28px;
+                }
+
+                p{
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .cart-button{
+            margin-top: 5%;
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            button{
+                width: 48%;
+                font-family: 'Roboto', sans-serif;
+                color: #AEAEAE;
+                //padding: 5px 25px;
+                font-size: 23px;
+                font-weight: 600;
+                text-decoration: none;
+                border: 1px solid #C1BB4D;
+                background-color: transparent;
+                padding: 7px 0;
+                text-align: center;
+
+                
+
+                &:hover {
+                    opacity: 0.8;
+                    color: #212332;
+                    cursor: pointer;
+                    background-color: #C1BB4D;
+                }
+            }
+        }
+    }
 
     .right{
         display: flex;
@@ -35,6 +100,20 @@
                     color: #212332;
                     background-color: #C1BB4D;
                 }
+            }
+
+            .nav-item-input{
+                font-family: 'Roboto', sans-serif;
+                color: #AEAEAE;
+                //padding: 5px 25px;
+                font-size: 23px;
+                font-weight: 600;
+                text-decoration: none;
+                border: 1px solid #C1BB4D;
+                background-color: transparent;
+                width: 300px;
+                padding: 7px 0;
+                text-align: center;
             }
             .search{
                 width: 600px;

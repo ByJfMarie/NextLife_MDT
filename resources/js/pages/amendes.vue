@@ -2,15 +2,28 @@
     <div>
         <div class="content">
 
-            <div class="serach-container">
-                <h1>heelo</h1>
+            <div class="left">
+                
+                <div class="cart-container">
+                    <div v-for="amende in cart" class="cart-item">
+                        <h1>{{amende.descritpion}}</h1>
+                        <p>{{amende.prix}} $</p>
+                    </div>
+                </div>
+                <h1 class="total">Total : {{cartTotalAmmount}} $</h1>
+                <div class="cart-button">
+                    <button v-on:click="valider">Valider</button>
+                    <button v-on:click="reset">Reset</button>
+                </div>
             </div>
 
             <div class="right">
                 
                 <div class="buttons">
-                    <router-link to="/taj/create" class="nav-item nav-link">ID Citoyen</router-link>
-                    <router-link to="/taj" class="nav-item nav-link search">Recherche Mot Clé</router-link>
+                    <input class="nav-item-input" v-model="id_citoyen" type="text" placeholder="ID Citoyen" name="id_citoyen" id="id_citoyen">
+                    <!-- <router-link to="/taj/create" class="nav-item nav-link">ID Citoyen</router-link> -->
+                    <input class="nav-item-input search" type="text" placeholder="Recherche Mot Clé" name="" id="">
+                    <!-- <router-link to="/taj" class="nav-item nav-link search">Recherche Mot Clé</router-link> -->
                     <router-link to="/dashboard" class="logout">Retour Dashboard</router-link>
                 </div>
                 
@@ -27,7 +40,7 @@
                                 <p>-</p>
                                 <p>{{data.prix}} $</p>
                             </div>
-                            <button class="addToCart" style="justify-self: flex-end;"></button>
+                            <button class="addToCart" v-on:click="addToCart(data)" style="justify-self: flex-end;"></button>
                         </div>
                     </div>
                 </div>
@@ -41,6 +54,9 @@ export default {
     data() {
         return {
             datas: null,
+            cart: [],
+            id_citoyen: null,
+            prix_amende: null,
         }
     },
     created() {
@@ -50,6 +66,58 @@ export default {
 
                 this.datas = response.data;
             })
+    },
+    computed: {
+        cartTotalAmmount(){
+            let total = 0;
+            for (let item in this.cart){
+                total = total + this.cart[item].prix;
+            }
+            return total;
+        }
+    },
+    methods: {
+        addToCart(data){
+            
+            for (let i = 0; i < this.cart.length; i++) {
+                if (this.cart[i].id === data.id) {
+                    return this.cart.quantity += 1;
+                }
+                
+            }
+            this.cart.push({
+                    id: data.id,
+                    descritpion: data.descritpion,
+                    prix: data.prix,
+                    quantity: 1
+            })
+
+            
+        },
+        reset(){
+            this.cart = [];
+        },
+        valider(){
+            this.prix_amende = this.cartTotalAmmount;
+            
+            var newAmende = new Object;
+            newAmende.citoyen = parseInt(this.id_citoyen) ;
+            newAmende.prix = this.prix_amende.toString();
+
+            newAmende.descriptif = [];
+            for (let i=0; i<this.cart.length; i++) {
+                newAmende.descriptif[i] = this.cart[i].descritpion;
+            }
+
+            newAmende.descriptif = JSON.stringify(newAmende.descriptif)
+
+            console.log(newAmende.descriptif);
+
+            console.log(newAmende);
+
+            this.$axios.post('/api/historique_amendes', newAmende)
+            
+        }
     },
     beforeRouteEnter(to, from, next) {
         if (!window.Laravel.isLoggedin) {

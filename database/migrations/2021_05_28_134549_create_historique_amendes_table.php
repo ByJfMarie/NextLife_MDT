@@ -17,7 +17,7 @@ class CreateHistoriqueAmendesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('citoyen');
             $table->integer('prix');
-            $table->json('descriptif')->nullable();
+            $table->json('descriptif');
             $table->timestamps();
 
             $table->foreign('citoyen')->references('id')->on('citoyens');

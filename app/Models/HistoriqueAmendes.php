@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class HistoriqueAmendes extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'citoyen',
+        'descriptif',
+        'prix'
+    ];
 }
