@@ -10,14 +10,14 @@
                 
                 <div class="buttons">
                     <router-link to="/taj/create" class="nav-item nav-link">Ajouter</router-link>
-                    <router-link to="/taj" class="nav-item nav-link">Modifier</router-link>
+                    <router-link to="/taj" class="nav-item nav-link">Rapport D'arrestation</router-link>
                     <router-link to="/taj/amende" class="nav-item nav-link">Créer une amende</router-link>
                     <router-link to="/dashboard" class="logout">Retour Dashboard</router-link>
                 </div>
                 
                 <div class="cards-container">
                     
-                    <div class="card" v-for="data in datas">
+                    <div class="card" v-for="data in datas" v-on:click="goToCasier(data.id)">
                         <!-- <div class="image-container">
                             <img :src="`/storage/${data.photo_path}`" alt="">
                         </div> -->
@@ -48,6 +48,11 @@ export default {
 
                 this.datas = response.data;
             })
+    },
+    methods: {
+        goToCasier(data){
+            window.location.href = "/taj/" + data;
+        }
     },
     beforeRouteEnter(to, from, next) {
         if (!window.Laravel.isLoggedin) {

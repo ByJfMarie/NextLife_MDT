@@ -22,14 +22,14 @@
                 <div class="buttons">
                     <input class="nav-item-input" v-model="id_citoyen" type="text" placeholder="ID Citoyen" name="id_citoyen" id="id_citoyen">
                     <!-- <router-link to="/taj/create" class="nav-item nav-link">ID Citoyen</router-link> -->
-                    <input class="nav-item-input search" type="text" placeholder="Recherche Mot Clé" name="" id="">
+                    <input class="nav-item-input search" type="search" placeholder="Recherche Mot Clé" name="" v-model="searchKey" id="search">
                     <!-- <router-link to="/taj" class="nav-item nav-link search">Recherche Mot Clé</router-link> -->
                     <router-link to="/dashboard" class="logout">Retour Dashboard</router-link>
                 </div>
                 
                 <div class="cards-container">
                     
-                    <div class="card" v-for="data in datas">
+                    <div class="card" v-for="data in filteredList">
                         <!-- <div class="image-container">
                             <img :src="`/storage/${data.photo_path}`" alt="">
                         </div> -->
@@ -57,6 +57,7 @@ export default {
             cart: [],
             id_citoyen: null,
             prix_amende: null,
+            searchKey: '',
         }
     },
     created() {
@@ -74,6 +75,14 @@ export default {
                 total = total + this.cart[item].prix;
             }
             return total;
+        },
+        filteredList(){
+            if (this.datas != null){
+                return this.datas.filter((data) => {
+                    return data.descritpion.toLowerCase().includes(this.searchKey.toLowerCase());
+                })
+            }
+            
         }
     },
     methods: {
@@ -109,13 +118,11 @@ export default {
                 newAmende.descriptif[i] = this.cart[i].descritpion;
             }
 
-            newAmende.descriptif = JSON.stringify(newAmende.descriptif)
+            newAmende.descriptif = JSON.stringify(newAmende.descriptif);
 
-            console.log(newAmende.descriptif);
+            this.$axios.post('/api/historique_amendes', newAmende);
 
-            console.log(newAmende);
-
-            this.$axios.post('/api/historique_amendes', newAmende)
+            this.cart = [];
             
         }
     },

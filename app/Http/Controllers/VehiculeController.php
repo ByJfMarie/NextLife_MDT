@@ -9,26 +9,54 @@ class VehiculeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     **@param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $vehicules = Vehicule::select(
 
-            "vehicules.id", 
-            "vehicules.modele",  
-            "vehicules.immatriculation",            
-            "vehicules.type", 
-            "citoyens.prenom as prenom_proprio",
-            "citoyens.nom as nom_proprio",
-            "vehicules.description",            
-            "vehicules.isWanted",            
-            "vehicules.photo_path" 
-        )
-        ->join("citoyens", "citoyens.id", "=", "vehicules.proprietaire")
-        ->get();
+        if (request('proprietaire')){
+            $vehicules = Vehicule::select(
 
+                "vehicules.id", 
+                "vehicules.modele",  
+                "vehicules.immatriculation",            
+                "vehicules.type", 
+                "citoyens.prenom as prenom_proprio",
+                "citoyens.nom as nom_proprio",
+                "vehicules.description",            
+                "vehicules.isWanted",            
+                "vehicules.photo_path" 
+            )
+            
+            ->join("citoyens", "citoyens.id", "=", "vehicules.proprietaire")
+            ->where('proprietaire', '=', request('proprietaire'))
+            ->get();
+        }
+        else {
+            $vehicules = Vehicule::select(
+
+                "vehicules.id", 
+                "vehicules.modele",  
+                "vehicules.immatriculation",            
+                "vehicules.type", 
+                "citoyens.prenom as prenom_proprio",
+                "citoyens.nom as nom_proprio",
+                "vehicules.description",            
+                "vehicules.isWanted",            
+                "vehicules.photo_path" 
+            )
+            
+            ->join("citoyens", "citoyens.id", "=", "vehicules.proprietaire")
+            ->get();
+        }
+        
+
+        
+
+        // if (request('proprietaire')) {
+        //     $vehicules->where('proprietaire', 'like', request('proprietaire'));
+        // }
         return $vehicules;
     }
 
