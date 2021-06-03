@@ -126,7 +126,19 @@ class CitoyenController extends Controller
      */
     public function update(Request $request, Citoyen $citoyen)
     {
-        //
+
+
+            $citoyen->driveLicense = $request->get('driveLicense');
+            $citoyen->weaponLicense = $request->get('weaponLicense');
+            $citoyen->isWanted = $request->get('isWanted');
+            $citoyen->isSummoned = $request->get('isSummoned');
+
+            if ($citoyen->update()) {
+                return response()->json([
+                    'success' => 'Citoyen modifié avec succès'
+                ], 200);
+            }
+
     }
 
     /**

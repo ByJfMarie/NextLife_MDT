@@ -39,12 +39,120 @@
             .bas{
                 height: 40%;
                 width: 100%;
+                display: flex;
+                font-family: 'Lato', sans-serif;
+                justify-content: space-around;
+
+                .bas-left, .bas-right{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    align-items: center;
+                }
+
+
+                p{
+                    color: white;
+                    font-size: 16px;
+                }
+
+                    .alert{
+                        color: red;
+                        font-size: 27px;
+                    }
+
+                    .convoque{
+                        color: #AD9B3A;
+                        font-size: 23px;
+                    }
+            
             }
         }
 
         .modifCheck{
             height: 45%;
             border: 1px solid #AD9B3A;
+            
+
+            .formModifCheck{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+
+                button{
+                    width: 100%;
+
+           
+                font-family: 'Roboto', sans-serif;
+                color: #AEAEAE;
+                //padding: 5px 25px;
+                font-size: 23px;
+                font-weight: 600;
+                text-decoration: none;
+                border: 1px solid #C1BB4D;
+                width: 80%;
+                padding: 7px 0;
+                text-align: center;
+                background: transparent;
+
+                &:hover {
+                    opacity: 0.8;
+                    color: #212332;
+                    background-color: #C1BB4D;
+                    cursor: pointer;
+                }
+        
+                }
+            }
+
+            .form-group {
+
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                width: 70%;
+
+                label{
+                    color: white;
+                    font-family: 'Lato', sans-serif;
+                    font-size: 18px;
+                }
+
+
+                .switch {
+                    appearance: none;
+                    height: 2em;
+                    width: 4em;
+                    background-color: #c2c2c2;
+                    cursor: pointer;
+                    border-radius: 1em;
+                    position: relative;
+                    transition: background-color 0.3s ease;
+                  }
+                  
+                  .switch::before {
+                    content: "";
+                    height: 100%;
+                    width: 50%;
+                    background-color: white;
+                    position: absolute;
+                    border-radius: 50%;
+                    border: #c2c2c2 solid 0.2em;
+                    transition: transform 0.3s ease, border-color 0.3s ease;
+                  }
+                  
+                  .switch:checked {
+                    background-color: #AD9B3A;
+                  }
+                  
+                  .switch:checked::before {
+                    border-color: #AD9B3A;
+                    transform: translateX(100%);
+                  }
+            }
         }
     }
 

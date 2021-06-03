@@ -17282,38 +17282,80 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       id: null,
       citoyen: null,
-      vehicules_citoyen: null
+      vehicules_citoyen: null,
+      driveLicense: null,
+      weaponLicense: null,
+      isWanted: null,
+      isSummoned: null
     };
   },
+  methods: {
+    modifyValue: function modifyValue() {
+      var _this = this;
+
+      var upCitoyen = new Object();
+      upCitoyen.driveLicense = this.driveLicense;
+      upCitoyen.weaponLicense = this.weaponLicense;
+      upCitoyen.isWanted = this.isWanted;
+      upCitoyen.isSummoned = this.isSummoned;
+      this.$axios.put('/api/citoyens/' + this.id, upCitoyen).then(function (response) {
+        window.location.href = "/taj/" + _this.id;
+      });
+    }
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this.id = _this.$route.params.id;
+              _this2.id = _this2.$route.params.id;
 
-              if (!(_this.id != null)) {
-                _context.next = 6;
+              if (!(_this2.id != null)) {
+                _context.next = 10;
                 break;
               }
 
               _context.next = 4;
-              return _this.$axios.get('/api/citoyens/' + _this.id).then(function (response) {
+              return _this2.$axios.get('/api/citoyens/' + _this2.id).then(function (response) {
                 // JSON responses are automatically parsed.
-                _this.citoyen = response.data;
+                _this2.citoyen = response.data;
               });
 
             case 4:
-              _context.next = 6;
-              return _this.$axios.get('/api/vehicules?proprietaire=' + _this.id).then(function (response) {
+              if (_this2.citoyen.driveLicense == 1) {
+                _this2.driveLicense = true;
+              } else {
+                _this2.driveLicense = false;
+              }
+
+              if (_this2.citoyen.weaponLicense == 1) {
+                _this2.weaponLicense = true;
+              } else {
+                _this2.weaponLicense = false;
+              }
+
+              if (_this2.citoyen.isWanted == 1) {
+                _this2.isWanted = true;
+              } else {
+                _this2.isWanted = false;
+              }
+
+              if (_this2.citoyen.isSummoned == 1) {
+                _this2.isSummoned = true;
+              } else {
+                _this2.isSummoned = false;
+              }
+
+              _context.next = 10;
+              return _this2.$axios.get('/api/vehicules?proprietaire=' + _this2.id).then(function (response) {
                 // JSON responses are automatically parsed.
-                _this.vehicules_citoyen = response.data;
+                _this2.vehicules_citoyen = response.data;
               });
 
-            case 6:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -18403,33 +18445,90 @@ var _hoisted_6 = {
 var _hoisted_7 = {
   "class": "info"
 };
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_8 = {
   "class": "bas"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, "test")], -1
-/* HOISTED */
-);
-
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "modifCheck"
-}, null, -1
-/* HOISTED */
-);
-
+};
+var _hoisted_9 = {
+  "class": "bas-left"
+};
 var _hoisted_10 = {
-  "class": "right"
+  key: 0
 };
 var _hoisted_11 = {
-  "class": "vehicules-container container"
+  key: 1
 };
 var _hoisted_12 = {
-  "class": "card"
+  "class": "bas-right"
 };
 var _hoisted_13 = {
+  key: 0,
+  "class": "alert"
+};
+var _hoisted_14 = {
+  key: 1,
+  "class": "convoque"
+};
+var _hoisted_15 = {
+  "class": "modifCheck"
+};
+var _hoisted_16 = {
+  key: 0,
+  "class": "formModifCheck"
+};
+var _hoisted_17 = {
+  "class": "driveLicense form-group"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "driveLicense"
+}, "Permit de Conduire", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = {
+  "class": "weaponLicense form-group"
+};
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "weaponLicense form-group"
+}, "Permit de Port d'Arme", -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
+  "class": "isWanted form-group"
+};
+
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "isWanted"
+}, "Est Recherché", -1
+/* HOISTED */
+);
+
+var _hoisted_23 = {
+  "class": "isSummoned form-group"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "isSummoned"
+}, "Est Convoqué", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  "class": "right"
+};
+var _hoisted_26 = {
+  "class": "vehicules-container container"
+};
+var _hoisted_27 = {
+  "class": "card"
+};
+var _hoisted_28 = {
   "class": "infos-container"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "saisie-container container"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "weapons-container"
@@ -18439,7 +18538,7 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 /* HOISTED */
 );
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "casier-container container"
 }, null, -1
 /* HOISTED */
@@ -18461,8 +18560,52 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.citoyen.adresse), 1
   /* TEXT */
-  )])]), _hoisted_8]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.vehicules_citoyen, function (vehicule) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vehicule.id), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [$data.citoyen.driveLicense == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", _hoisted_10, "Permit de Conduire")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.citoyen.weaponLicense == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", _hoisted_11, "Permit de Port D'arme")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [$data.citoyen.isWanted == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", _hoisted_13, "⚠️ Recherché")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.citoyen.isSummoned == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("p", _hoisted_14, "Convoqué")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [$data.id ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"checkbox\" name=\"driveLicense\" v-if=\"citoyen.driveLicense\" v-model=\"driveLicense\" checked id=\"driveLicense\" class=\"switch\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "checkbox",
+    name: "driveLicense",
+    id: "driveLicense",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.driveLicense = $event;
+    }),
+    "class": "switch"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.driveLicense]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"checkbox\" name=\"weaponLicense\" v-if=\"citoyen.weaponLicense\" v-model=\"weaponLicense\" checked id=\"weaponLicense\" class=\"switch\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "checkbox",
+    name: "weaponLicense",
+    id: "weaponLicense",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.weaponLicense = $event;
+    }),
+    "class": "switch"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.weaponLicense]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"checkbox\" name=\"isWanted\" v-if=\"citoyen.isWanted\" checked id=\"isWanted\" v-model=\"isWanted\" class=\"switch\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "checkbox",
+    name: "isWanted",
+    id: "isWanted",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.isWanted = $event;
+    }),
+    "class": "switch"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isWanted]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input type=\"checkbox\" name=\"isSummoned\" v-if=\"citoyen.isSummoned\" checked id=\"isSummoned\" v-model=\"isSummoned\" class=\"switch\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "checkbox",
+    name: "isSummoned",
+    id: "isSummoned",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.isSummoned = $event;
+    }),
+    "class": "switch"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $data.isSummoned]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[5] || (_cache[5] = function () {
+      return $options.modifyValue && $options.modifyValue.apply($options, arguments);
+    })
+  }, "Modifier")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_26, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.vehicules_citoyen, function (vehicule) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vehicule.id), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vehicule.immatriculation), 1
     /* TEXT */
@@ -18471,7 +18614,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     )])]);
   }), 256
   /* UNKEYED_FRAGMENT */
-  ))]), _hoisted_14, _hoisted_15])])]);
+  ))]), _hoisted_29, _hoisted_30])])]);
 });
 
 /***/ }),
@@ -18896,7 +19039,7 @@ var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBP
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap);"]);
 ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".citoyen-container[data-v-48c8adec] {\n  margin-top: 25vh;\n  width: 100%;\n  height: 75vh;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: flex-end;\n}\n.citoyen-container .left[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  width: 20%;\n  height: 85%;\n}\n.citoyen-container .left .infos-citoyen[data-v-48c8adec] {\n  height: 45%;\n  border: 1px solid #AD9B3A;\n  display: flex;\n  justify-content: space-between;\n  flex-direction: column;\n}\n.citoyen-container .left .infos-citoyen .haut[data-v-48c8adec] {\n  display: flex;\n  justify-content: space-around;\n  height: 55%;\n  width: 100%;\n}\n.citoyen-container .left .infos-citoyen .haut p[data-v-48c8adec] {\n  margin-top: 5%;\n  color: white;\n  font-size: 20px;\n  font-family: 'Lato', sans-serif;\n}\n.citoyen-container .left .infos-citoyen .bas[data-v-48c8adec] {\n  height: 40%;\n  width: 100%;\n}\n.citoyen-container .left .modifCheck[data-v-48c8adec] {\n  height: 45%;\n  border: 1px solid #AD9B3A;\n}\n.citoyen-container .right[data-v-48c8adec] {\n  align-self: center;\n  width: 70%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.citoyen-container .right .container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 30%;\n  overflow-y: auto;\n}\n.citoyen-container .right .vehicules-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: center;\n  background: rgba(180, 175, 175, 0.04);\n  overflow: auto;\n}\n.citoyen-container .right .vehicules-container .card[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  background: rgba(180, 175, 175, 0.17);\n  margin-top: 2%;\n  width: 95%;\n  height: 20%;\n}\n.citoyen-container .right .vehicules-container .card[data-v-48c8adec]:hover {\n  scale: 1.02;\n  cursor: pointer;\n}\n.citoyen-container .right .vehicules-container .card .infos-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n  width: 100%;\n}\n.citoyen-container .right .vehicules-container .card .infos-container p[data-v-48c8adec] {\n  font-family: Roboto;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 20px;\n  line-height: 27px;\n  color: #EFEFEF;\n  margin-left: 3%;\n}\n.citoyen-container .right .saisie-container[data-v-48c8adec] {\n  border: none;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.citoyen-container .right .saisie-container .weapons-container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 47%;\n}\n.citoyen-container .right .saisie-container .objects-container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 47%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".citoyen-container[data-v-48c8adec] {\n  margin-top: 25vh;\n  width: 100%;\n  height: 75vh;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: flex-end;\n}\n.citoyen-container .left[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  width: 20%;\n  height: 85%;\n}\n.citoyen-container .left .infos-citoyen[data-v-48c8adec] {\n  height: 45%;\n  border: 1px solid #AD9B3A;\n  display: flex;\n  justify-content: space-between;\n  flex-direction: column;\n}\n.citoyen-container .left .infos-citoyen .haut[data-v-48c8adec] {\n  display: flex;\n  justify-content: space-around;\n  height: 55%;\n  width: 100%;\n}\n.citoyen-container .left .infos-citoyen .haut p[data-v-48c8adec] {\n  margin-top: 5%;\n  color: white;\n  font-size: 20px;\n  font-family: 'Lato', sans-serif;\n}\n.citoyen-container .left .infos-citoyen .bas[data-v-48c8adec] {\n  height: 40%;\n  width: 100%;\n  display: flex;\n  font-family: 'Lato', sans-serif;\n  justify-content: space-around;\n}\n.citoyen-container .left .infos-citoyen .bas .bas-left[data-v-48c8adec], .citoyen-container .left .infos-citoyen .bas .bas-right[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n}\n.citoyen-container .left .infos-citoyen .bas p[data-v-48c8adec] {\n  color: white;\n  font-size: 16px;\n}\n.citoyen-container .left .infos-citoyen .bas .alert[data-v-48c8adec] {\n  color: red;\n  font-size: 27px;\n}\n.citoyen-container .left .infos-citoyen .bas .convoque[data-v-48c8adec] {\n  color: #AD9B3A;\n  font-size: 23px;\n}\n.citoyen-container .left .modifCheck[data-v-48c8adec] {\n  height: 45%;\n  border: 1px solid #AD9B3A;\n}\n.citoyen-container .left .modifCheck .formModifCheck[data-v-48c8adec] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-around;\n}\n.citoyen-container .left .modifCheck .formModifCheck button[data-v-48c8adec] {\n  width: 100%;\n  font-family: 'Roboto', sans-serif;\n  color: #AEAEAE;\n  font-size: 23px;\n  font-weight: 600;\n  text-decoration: none;\n  border: 1px solid #C1BB4D;\n  width: 80%;\n  padding: 7px 0;\n  text-align: center;\n  background: transparent;\n}\n.citoyen-container .left .modifCheck .formModifCheck button[data-v-48c8adec]:hover {\n  opacity: 0.8;\n  color: #212332;\n  background-color: #C1BB4D;\n  cursor: pointer;\n}\n.citoyen-container .left .modifCheck .form-group[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  width: 70%;\n}\n.citoyen-container .left .modifCheck .form-group label[data-v-48c8adec] {\n  color: white;\n  font-family: 'Lato', sans-serif;\n  font-size: 18px;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  height: 2em;\n  width: 4em;\n  background-color: #c2c2c2;\n  cursor: pointer;\n  border-radius: 1em;\n  position: relative;\n  transition: background-color 0.3s ease;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec]::before {\n  content: \"\";\n  height: 100%;\n  width: 50%;\n  background-color: white;\n  position: absolute;\n  border-radius: 50%;\n  border: #c2c2c2 solid 0.2em;\n  transition: transform 0.3s ease, border-color 0.3s ease;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec]:checked {\n  background-color: #AD9B3A;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec]:checked::before {\n  border-color: #AD9B3A;\n  transform: translateX(100%);\n}\n.citoyen-container .right[data-v-48c8adec] {\n  align-self: center;\n  width: 70%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.citoyen-container .right .container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 30%;\n  overflow-y: auto;\n}\n.citoyen-container .right .vehicules-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: center;\n  background: rgba(180, 175, 175, 0.04);\n  overflow: auto;\n}\n.citoyen-container .right .vehicules-container .card[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  background: rgba(180, 175, 175, 0.17);\n  margin-top: 2%;\n  width: 95%;\n  height: 20%;\n}\n.citoyen-container .right .vehicules-container .card[data-v-48c8adec]:hover {\n  scale: 1.02;\n  cursor: pointer;\n}\n.citoyen-container .right .vehicules-container .card .infos-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n  width: 100%;\n}\n.citoyen-container .right .vehicules-container .card .infos-container p[data-v-48c8adec] {\n  font-family: Roboto;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 20px;\n  line-height: 27px;\n  color: #EFEFEF;\n  margin-left: 3%;\n}\n.citoyen-container .right .saisie-container[data-v-48c8adec] {\n  border: none;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.citoyen-container .right .saisie-container .weapons-container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 47%;\n}\n.citoyen-container .right .saisie-container .objects-container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 47%;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
