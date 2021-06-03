@@ -52,5 +52,82 @@
         height: 50vh;
         background: rgba(221, 219, 219, 0.021);
         backdrop-filter: blur(27.2px);
+        display: flex;
+        justify-content: space-around;
+        padding-top: 1%;
+        flex-wrap: wrap;
+
+        .wantedCitoyens{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1{
+                margin-bottom: 10%;
+                font-size: 28px;
+                color: #C1BB4D;
+            }
+
+            .citoyens{
+
+                .citoyen{
+                    margin-bottom: 2vh;
+                    p{
+                        color: white;
+                        font-size: 20px;
+                        font-family: 'Lato', sans-serif;
+                    }
+                }
+            }
+        }
+
+        .summonedCitoyens{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1{
+                margin-bottom: 10%;
+                font-size: 28px;
+                color: #C1BB4D;
+            }
+
+            .citoyens{
+
+                .citoyen{
+                    margin-bottom: 2vh;
+                    p{
+                        color: white;
+                        font-size: 20px;
+                        font-family: 'Lato', sans-serif;
+                    }
+                }
+            }
+        }
+
+        .bracelets{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1{
+                margin-bottom: 10%;
+                font-size: 28px;
+                color: #C1BB4D;
+            }
+
+            .citoyens{
+
+                .citoyen{
+                    margin-bottom: 2vh;
+                    p{
+                        color: white;
+                        font-size: 20px;
+                        font-family: 'Lato', sans-serif;
+                    }
+                }
+            }
+        }
+
     }
 }

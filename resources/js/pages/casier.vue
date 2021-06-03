@@ -15,8 +15,8 @@
                     </div>
                     <div class="bas">
                         <div class="bas-left">
-                            <p v-if="citoyen.driveLicense == 1">Permit de Conduire</p>
-                            <p v-if="citoyen.weaponLicense == 1">Permit de Port D'arme</p>
+                            <p v-if="citoyen.driveLicense == 1">Permis de Conduire</p>
+                            <p v-if="citoyen.weaponLicense == 1">Permis de Port D'arme</p>
                         </div>
                         <div class="bas-right">
                             <p class="alert" v-if="citoyen.isWanted == 1">⚠️ Recherché</p>
@@ -29,12 +29,12 @@
                     <div class="formModifCheck" v-if="id">
 
                         <div class="driveLicense form-group">
-                            <label for="driveLicense">Permit de Conduire</label>
+                            <label for="driveLicense">Permis de Conduire</label>
                             <!-- <input type="checkbox" name="driveLicense" v-if="citoyen.driveLicense" v-model="driveLicense" checked id="driveLicense" class="switch"> -->
                             <input type="checkbox" name="driveLicense" id="driveLicense" v-model="driveLicense" class="switch">
                         </div>
                         <div class="weaponLicense form-group">
-                            <label for="weaponLicense form-group">Permit de Port d'Arme</label>
+                            <label for="weaponLicense form-group">Permis de Port d'Arme</label>
                             <!-- <input type="checkbox" name="weaponLicense" v-if="citoyen.weaponLicense" v-model="weaponLicense" checked id="weaponLicense" class="switch"> -->
                             <input type="checkbox" name="weaponLicense" id="weaponLicense" v-model="weaponLicense" class="switch">
                         </div>
@@ -67,7 +67,17 @@
                     <div class="weapons-container"></div>
                     <div class="objects-container"></div>
                 </div>
-                <div class="casier-container container"></div>
+                <div class="justice-container container">
+                    <div class="casier-container"></div>
+                    <div v-if="bracelet != null" class="bracelet-container">
+                        <h1>Numéro du série du Bracelet :</h1>
+                        <p>{{bracelet.num_serie}}</p>
+                        <button v-on:click="destroyBracelet">Retirer le Bracelet</button>
+                    </div>
+                    <div v-else class="bracelet-container">
+                        <button v-on:click="encodeBracelet">Encoder un Bracelet</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +93,7 @@ export default {
             weaponLicense: null,
             isWanted: null,
             isSummoned: null,
+            bracelet: null,
         }
     },
     methods: {
@@ -97,7 +108,24 @@ export default {
             this.$axios.put('/api/citoyens/' + this.id, upCitoyen).then(response => {
                 window.location.href = "/taj/" + this.id;
             })
+        },
+        encodeBracelet(){
+            var newBracelet = new Object;
+
+            newBracelet.id = this.id;
+
+            this.$axios.post('/api/bracelet', newBracelet).then(response =>{
+                window.location.href = "/taj/" + this.id;
+            })
+        },
+        destroyBracelet(){
+
+            this.$axios.delete('/api/bracelet/' +this.bracelet.id).then(response =>{
+                window.location.href = "/taj/" + this.id;
+            })
         }
+
+
     },
     async created() {
         this.id = this.$route.params.id;
@@ -145,6 +173,12 @@ export default {
             // JSON responses are automatically parsed.
 
                 this.vehicules_citoyen = response.data;
+            })
+
+            await this.$axios
+            .get('/api/bracelet?citoyen=' + this.id)
+            .then(response =>{
+                this.bracelet = response.data[0];
             })
         }
     }

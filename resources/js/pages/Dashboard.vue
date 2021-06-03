@@ -8,7 +8,28 @@
            <a class="logout" style="cursor: pointer;" @click="logout">Sortir du M.D.T / C.A.D</a>
         </div>
         <div class="infos-container">
-            
+            <div class="wantedCitoyens">
+                <h1>Personne les plus recherché :</h1>
+                <div class="citoyens" v-for="citoyen in citoyens">
+                    <div class="citoyen" v-if="citoyen.isWanted == 1">
+                        <p>{{citoyen.prenom}} {{citoyen.nom}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="summonedCitoyens">
+                <h1>Citoyen Convoqués :</h1>
+                <div class="citoyens" v-for="citoyen in citoyens">
+                    <div class="citoyen" v-if="citoyen.isSummoned == 1">
+                        <p>{{citoyen.prenom}} {{citoyen.nom}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bracelets">
+                <h1>Bracelet Electroniques :</h1>
+                <div class="citoyens" v-for="bracelet in bracelets">
+                    <p>{{bracelet.num_serie}} - {{bracelet.prenom_proprio}} {{bracelet.nom_proprio}}</p>
+                </div>
+            </div>
         </div> 
     </div>
 </template>
@@ -28,22 +49,37 @@ export default {
             id: null,
             name: null,
             grade: null,
-            matricule: null
+            matricule: null,
+            citoyens: null,
+            bracelets: null,
         }
     },
-    created() {
+    async created() {
         if (window.Laravel.user) {
             this.id = window.Laravel.user.id
             this.name = window.Laravel.user.name
             this.matricule = window.Laravel.user.matricule
             
-            axios
+            await axios.get('/api/citoyens').then(response =>{
+                this.citoyens = response.data;
+            })
+
+            await axios
+            .get('/api/bracelet')
+            .then(response =>{
+                this.bracelets = response.data;
+            })
+
+            await axios
             .get('/api/users/' + this.id)
             .then(response => {
             // JSON responses are automatically parsed.
 
                 this.grade = response.data[0].grade;
-            })
+            })   
+
+            
+
         }
     },
     beforeRouteEnter(to, from, next) {
