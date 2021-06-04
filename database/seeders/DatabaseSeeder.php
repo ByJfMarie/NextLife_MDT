@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 
+use App\Models\AccessToken;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,26 +19,37 @@ class DatabaseSeeder extends Seeder
         \App\Models\Grade::factory(1)->create([
             'code' => 'LSPD_O',
             'libelle' => 'Officier',
+            'etat_major' => 0,
         ]);
 
         \App\Models\Grade::factory(1)->create([
             'code' => 'LSPD_S',
             'libelle' => 'Sergent',
+            'etat_major' => 0,
         ]);
 
         \App\Models\Grade::factory(1)->create([
             'code' => 'LSPD_L',
             'libelle' => 'Lieutenant',
+            'etat_major' => 0,
+        ]);
+
+        \App\Models\Grade::factory(1)->create([
+            'code' => 'LSPD_LC',
+            'libelle' => 'Lieutenant Chef',
+            'etat_major' => 1,
         ]);
 
         \App\Models\Grade::factory(1)->create([
             'code' => 'LSPD_CP',
             'libelle' => 'Capitaine',
+            'etat_major' => 1,
         ]);
 
         \App\Models\Grade::factory(1)->create([
             'code' => 'LSPD_CM',
             'libelle' => 'Commandant',
+            'etat_major' => 1,
         ]);
 
         \App\Models\Citoyen::factory(1)->create([
@@ -51,6 +63,13 @@ class DatabaseSeeder extends Seeder
             'photo_path' => 'citoyens/GMGrLlDcP35XBVMuAl0UO51XViuFSzlUKjJqAJhQ.png',
     
         ]);
+
+        \App\Models\AccessToken::factory(1)->create([
+            'access_token' => 'AF51K6MN',
+            'grade' => 'LSPD_CM',
+        ]);
+
+        
     }
 }
 

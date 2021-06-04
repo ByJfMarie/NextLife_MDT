@@ -9,15 +9,24 @@
         </div>
         <div class="infos-container">
             <div class="wantedCitoyens">
-                <h1>Personne les plus recherché :</h1>
+                <h1>Personnes les plus recherchées :</h1>
                 <div class="citoyens" v-for="citoyen in citoyens">
                     <div class="citoyen" v-if="citoyen.isWanted == 1">
                         <p>{{citoyen.prenom}} {{citoyen.nom}}</p>
                     </div>
                 </div>
             </div>
+            <div class="wantedVehicule">
+                <h1>Véhicules recherchées :</h1>
+                <div class="vehicules" v-for="vehicule in vehicules">
+                    <div class="vehicule" v-if="vehicule.isWanted == 1">
+                        <p>{{vehicule.immatriculation}} - {{vehicule.modele}}</p>
+                        <p>{{vehicule.prenom_proprio}} {{vehicule.nom_proprio}}</p>
+                    </div>
+                </div>
+            </div>
             <div class="summonedCitoyens">
-                <h1>Citoyen Convoqués :</h1>
+                <h1>Citoyens Convoquées :</h1>
                 <div class="citoyens" v-for="citoyen in citoyens">
                     <div class="citoyen" v-if="citoyen.isSummoned == 1">
                         <p>{{citoyen.prenom}} {{citoyen.nom}}</p>
@@ -52,6 +61,7 @@ export default {
             matricule: null,
             citoyens: null,
             bracelets: null,
+            vehicules: null,
         }
     },
     async created() {
@@ -62,6 +72,12 @@ export default {
             
             await axios.get('/api/citoyens').then(response =>{
                 this.citoyens = response.data;
+            })
+
+            await axios
+            .get('/api/vehicules')
+            .then(response =>{
+                this.vehicules = response.data;
             })
 
             await axios

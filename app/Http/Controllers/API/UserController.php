@@ -124,6 +124,8 @@ class UserController extends Controller
 
             "grades.libelle as grade",
 
+            "grades.etat_major as etat_major",
+
             "users.email", 
 
         )
