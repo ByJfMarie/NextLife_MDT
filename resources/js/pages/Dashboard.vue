@@ -65,7 +65,7 @@ export default {
         }
     },
     async created() {
-        if (window.Laravel.user) {
+        //if (window.Laravel.user) {
             this.id = window.Laravel.user.id
             this.name = window.Laravel.user.name
             this.matricule = window.Laravel.user.matricule
@@ -96,7 +96,7 @@ export default {
 
             
 
-        }
+        //}
     },
     beforeRouteEnter(to, from, next) {
         if (!window.Laravel.isLoggedin) {
