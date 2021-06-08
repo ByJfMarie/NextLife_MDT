@@ -4,17 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\AccessToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class AccessTokenController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $access_token = AccessToken::select(
+
+            "access_tokens.grade",
+        )
+        ->where('access_token', '=', request('access_token'))
+        ->get();
+
+        return $access_token;
     }
 
     /**
@@ -35,7 +43,20 @@ class AccessTokenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $random = Str::random(10);
+
+        $accessToken = new AccessToken;
+
+        $accessToken->access_token = $random;
+        $accessToken->grade = $request->get('grade');
+
+        if ($accessToken->save()) {
+            return response()->json([
+                'success' => 'Bracelet crée avec succès',
+                'token' => $random
+            ], 200);
+        }
+        
     }
 
     /**

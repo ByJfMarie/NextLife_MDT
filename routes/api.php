@@ -2,10 +2,12 @@
 
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GradeController;
 use App\Http\Controllers\CitoyenController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\BraceletController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\AccessTokenController;
 use App\Http\Controllers\ListeAmendesController;
 use App\Http\Controllers\HistoriqueAmendesController;
 
@@ -20,3 +22,5 @@ Route::apiResource('vehicules', VehiculeController::class);
 Route::apiResource('liste_amendes', ListeAmendesController::class);
 Route::apiResource('historique_amendes', HistoriqueAmendesController::class);
 Route::apiResource('bracelet', BraceletController::class);
+Route::apiResource('grades', GradeController::class);
+Route::apiResource('access_token', AccessTokenController::class);

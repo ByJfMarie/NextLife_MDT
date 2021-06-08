@@ -21,6 +21,7 @@ class UserController extends Controller
             $user->name = $request->name;
             $user->matricule = $request->matricule;
             $user->email = $request->email;
+            $user->grade = $request->grade;
             $user->password = Hash::make($request->password);
             $user->save();
 

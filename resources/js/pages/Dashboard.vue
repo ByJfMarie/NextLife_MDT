@@ -4,7 +4,7 @@
        <div class="button-container">
            <router-link to="/siv" class="nav-item nav-link">SIV</router-link>
            <router-link to="/taj" class="nav-item nav-link">TAJ</router-link>
-           <router-link to="/login" class="nav-item nav-link">Etat-Major</router-link>
+           <router-link to="/etat-major" class="nav-item nav-link">Etat-Major</router-link>
            <a class="logout" style="cursor: pointer;" @click="logout">Sortir du M.D.T / C.A.D</a>
         </div>
         <div class="infos-container">

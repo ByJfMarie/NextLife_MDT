@@ -17047,6 +17047,7 @@ __webpack_require__.r(__webpack_exports__);
       password: "",
       matricule: "",
       access_token: "",
+      grade: null,
       error: null
     };
   },
@@ -17057,26 +17058,53 @@ __webpack_require__.r(__webpack_exports__);
       e.preventDefault();
 
       if (this.password.length > 0) {
-        if (this.access_token == "AF51K6MN") {
-          axios.get('/sanctum/csrf-cookie').then(function (response) {
-            axios.post('api/register', {
-              name: _this.name,
-              matricule: _this.matricule,
-              email: _this.email,
-              password: _this.password
-            }).then(function (response) {
-              if (response.data.success) {
-                window.location.href = "/login";
-              } else {
-                _this.error = response.data.message;
-              }
-            })["catch"](function (error) {
-              console.error(error);
+        this.$axios.get('/api/access_token?access_token=' + this.access_token).then(function (response) {
+          if (response.data.length != 0) {
+            _this.grade = response.data[0].grade;
+            axios.get('/sanctum/csrf-cookie').then(function (response) {
+              axios.post('api/register', {
+                name: _this.name,
+                matricule: _this.matricule,
+                email: _this.email,
+                password: _this.password,
+                grade: _this.grade
+              }).then(function (response) {
+                if (response.data.success) {
+                  window.location.href = "/login";
+                } else {
+                  _this.error = response.data.message;
+                }
+              })["catch"](function (error) {
+                console.error(error);
+              });
             });
-          });
-        } else {
-          alert("Token d'accès invalide");
-        }
+          } else {
+            alert("Token d'accès invalide");
+          }
+        }); // if (this.grade) {
+        //     axios.get('/sanctum/csrf-cookie').then(response => {
+        //     axios.post('api/register', {
+        //         name: this.name,
+        //         matricule: this.matricule,
+        //         email: this.email,
+        //         password: this.password,
+        //         grade: this.grade,
+        //     })
+        //         .then(response => {
+        //             if (response.data.success) {
+        //                 window.location.href = "/login"
+        //             } else {
+        //                 this.error = response.data.message
+        //             }
+        //         })
+        //         .catch(function (error) {
+        //             console.error(error);
+        //         });
+        //     })
+        // }
+        // else{
+        //     alert("Token d'accès invalide")
+        // }
       }
     }
   },
@@ -17436,6 +17464,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      grades: null,
+      grade: null
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.$axios.get('/api/grades').then(function (response) {
+      _this.grades = response.data;
+    });
+  },
+  methods: {
+    generate: function generate() {
+      var newAccessToken = new Object();
+      newAccessToken.grade = this.grade;
+      this.$axios.post('/api/access_token', newAccessToken).then(function (response) {
+        alert("Voici l'Access Token : " + response.data.token);
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/App.vue?vue&type=template&id=f348271a&scoped=true&class=back":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/App.vue?vue&type=template&id=f348271a&scoped=true&class=back ***!
@@ -17609,7 +17675,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     /* STABLE */
 
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/login",
+    to: "/etat-major",
     "class": "nav-item nav-link"
   }, {
     "default": _withId(function () {
@@ -18796,6 +18862,59 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "access-token"
+};
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", null, "Génération Access Token", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "grade"
+}, "Sélectionner le grade : ", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("select", {
+    name: "grade",
+    id: "grade",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.grade = $event;
+    })
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.grades, function (grade) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("option", {
+      value: grade.code
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(grade.libelle), 9
+    /* TEXT, PROPS */
+    , ["value"]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $data.grade]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.generate && $options.generate.apply($options, arguments);
+    })
+  }, "Générer")])]);
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -18866,7 +18985,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "routes": () => (/* binding */ routes),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Home */ "./resources/js/pages/Home.vue");
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/About */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Register */ "./resources/js/pages/Register.vue");
@@ -18878,6 +18997,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_add_vehicule__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/add_vehicule */ "./resources/js/pages/add_vehicule.vue");
 /* harmony import */ var _pages_amendes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pages/amendes */ "./resources/js/pages/amendes.vue");
 /* harmony import */ var _pages_casier__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pages/casier */ "./resources/js/pages/casier.vue");
+/* harmony import */ var _pages_etat_major__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../pages/etat-major */ "./resources/js/pages/etat-major.vue");
+
 
 
 
@@ -18931,13 +19052,17 @@ var routes = [{
   path: '/taj/amende',
   component: _pages_amendes__WEBPACK_IMPORTED_MODULE_9__.default
 }, {
+  name: 'etat-major',
+  path: '/etat-major',
+  component: _pages_etat_major__WEBPACK_IMPORTED_MODULE_11__.default
+}, {
   name: 'casier',
   path: '/taj/:id',
   props: true,
   component: _pages_casier__WEBPACK_IMPORTED_MODULE_10__.default
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_11__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_11__.createWebHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_12__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_12__.createWebHistory)(),
   routes: routes
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -37890,6 +38015,32 @@ _casier_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file 
 
 /***/ }),
 
+/***/ "./resources/js/pages/etat-major.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/pages/etat-major.vue ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _etat_major_vue_vue_type_template_id_0f324077_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./etat-major.vue?vue&type=template&id=0f324077&lang=fr */ "./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr");
+/* harmony import */ var _etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./etat-major.vue?vue&type=script&lang=js */ "./resources/js/pages/etat-major.vue?vue&type=script&lang=js");
+
+
+
+_etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _etat_major_vue_vue_type_template_id_0f324077_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/pages/etat-major.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/App.vue?vue&type=script&lang=js":
 /*!******************************************************!*\
   !*** ./resources/js/App.vue?vue&type=script&lang=js ***!
@@ -38082,6 +38233,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/etat-major.vue?vue&type=script&lang=js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/pages/etat-major.vue?vue&type=script&lang=js ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./etat-major.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/App.vue?vue&type=template&id=f348271a&scoped=true&class=back":
 /*!***********************************************************************************!*\
   !*** ./resources/js/App.vue?vue&type=template&id=f348271a&scoped=true&class=back ***!
@@ -38270,6 +38437,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_casier_vue_vue_type_template_id_48c8adec_scoped_true_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_casier_vue_vue_type_template_id_48c8adec_scoped_true_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./casier.vue?vue&type=template&id=48c8adec&scoped=true&lang=fr */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/casier.vue?vue&type=template&id=48c8adec&scoped=true&lang=fr");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_etat_major_vue_vue_type_template_id_0f324077_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_etat_major_vue_vue_type_template_id_0f324077_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./etat-major.vue?vue&type=template&id=0f324077&lang=fr */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr");
 
 
 /***/ }),

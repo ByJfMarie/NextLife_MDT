@@ -80,6 +80,7 @@ export default {
             password: "",
             matricule: "",
             access_token: "",
+            grade: null,
             error: null
         }
     },
@@ -87,13 +88,16 @@ export default {
         handleSubmit(e) {
             e.preventDefault()
             if (this.password.length > 0) {
-                if (this.access_token == "AF51K6MN") {
+                this.$axios.get('/api/access_token?access_token=' + this.access_token).then(response=>{
+                    if (response.data.length != 0) {
+                    this.grade = response.data[0].grade;
                     axios.get('/sanctum/csrf-cookie').then(response => {
                     axios.post('api/register', {
                         name: this.name,
                         matricule: this.matricule,
                         email: this.email,
-                        password: this.password
+                        password: this.password,
+                        grade: this.grade,
                     })
                         .then(response => {
                             if (response.data.success) {
@@ -106,10 +110,35 @@ export default {
                             console.error(error);
                         });
                     })
-                }
-                else{
-                    alert("Token d'accès invalide")
-                }
+                    }
+                    else{
+                        alert("Token d'accès invalide")
+                    }
+                })
+                // if (this.grade) {
+                //     axios.get('/sanctum/csrf-cookie').then(response => {
+                //     axios.post('api/register', {
+                //         name: this.name,
+                //         matricule: this.matricule,
+                //         email: this.email,
+                //         password: this.password,
+                //         grade: this.grade,
+                //     })
+                //         .then(response => {
+                //             if (response.data.success) {
+                //                 window.location.href = "/login"
+                //             } else {
+                //                 this.error = response.data.message
+                //             }
+                //         })
+                //         .catch(function (error) {
+                //             console.error(error);
+                //         });
+                //     })
+                // }
+                // else{
+                //     alert("Token d'accès invalide")
+                // }
                 
             }
         }

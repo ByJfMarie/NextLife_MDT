@@ -11,6 +11,7 @@ import Create_Citoyen from '../pages/add_citoyen';
 import Create_Vehicule from '../pages/add_vehicule';
 import Amendes from '../pages/amendes';
 import Casier from '../pages/casier';
+import EtatMajor from '../pages/etat-major';
 
 
 export const routes = [
@@ -63,6 +64,11 @@ export const routes = [
         name: 'amendes',
         path: '/taj/amende',
         component: Amendes
+    },
+    {
+        name: 'etat-major',
+        path: '/etat-major',
+        component: EtatMajor
     },
     {
         name: 'casier',
