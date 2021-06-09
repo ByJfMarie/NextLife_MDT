@@ -64,8 +64,30 @@
                     </div>
                 </div>
                 <div class="saisie-container container">
-                    <div class="weapons-container"></div>
-                    <div class="objects-container"></div>
+                    <div class="weapons-container">
+                        <div class="card" v-for="item in coffreW" >
+                            <div class="infos-container">
+                                <div class="p">
+
+                                    <p>{{item.nom}}</p>
+                                    <p>X {{item.quantity}}</p>
+                                </div>
+                                <button class="addToCart" v-on:click="delete(item.nom)" style="justify-self: flex-end;"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="objects-container">
+                        <div class="card" v-for="item in coffreO">
+                            <div class="infos-container">
+                                <div class="p">
+
+                                    <p>{{item.nom}}</p>
+                                    <p>X {{item.quantity}}</p>
+                                </div>
+                                <button class="addToCart" v-on:click="delete(item.nom)" style="justify-self: flex-end;"></button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="justice-container container">
                     <div class="casier-container"></div>
@@ -94,6 +116,8 @@ export default {
             isWanted: null,
             isSummoned: null,
             bracelet: null,
+            coffreO: null,
+            coffreW: null,
         }
     },
     methods: {
@@ -123,6 +147,9 @@ export default {
             this.$axios.delete('/api/bracelet/' +this.bracelet.id).then(response =>{
                 window.location.href = "/taj/" + this.id;
             })
+        },
+        delete(data){
+            console.log(data);
         }
 
 
@@ -173,6 +200,14 @@ export default {
             // JSON responses are automatically parsed.
 
                 this.vehicules_citoyen = response.data;
+            })
+
+            await this.$axios.get('/api/coffre?id_citoyenW=' + this.id).then(response => {
+                this.coffreW = response.data;
+            })
+
+            await this.$axios.get('/api/coffre?id_citoyenO=' + this.id).then(response => {
+                this.coffreO = response.data;
             })
 
             await this.$axios

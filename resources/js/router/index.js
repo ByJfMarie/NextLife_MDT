@@ -12,6 +12,7 @@ import Create_Vehicule from '../pages/add_vehicule';
 import Amendes from '../pages/amendes';
 import Casier from '../pages/casier';
 import EtatMajor from '../pages/etat-major';
+import addCoffre from '../pages/add-coffre';
 
 
 export const routes = [
@@ -69,6 +70,11 @@ export const routes = [
         name: 'etat-major',
         path: '/etat-major',
         component: EtatMajor
+    },
+    {
+        name: 'add-coffre',
+        path: '/add-coffre',
+        component: addCoffre
     },
     {
         name: 'casier',

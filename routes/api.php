@@ -3,6 +3,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\CoffreController;
 use App\Http\Controllers\CitoyenController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\BraceletController;
@@ -24,3 +25,4 @@ Route::apiResource('historique_amendes', HistoriqueAmendesController::class);
 Route::apiResource('bracelet', BraceletController::class);
 Route::apiResource('grades', GradeController::class);
 Route::apiResource('access_token', AccessTokenController::class);
+Route::apiResource('coffre', CoffreController::class);
