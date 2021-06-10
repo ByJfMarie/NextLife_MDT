@@ -13,6 +13,7 @@ import Amendes from '../pages/amendes';
 import Casier from '../pages/casier';
 import EtatMajor from '../pages/etat-major';
 import addCoffre from '../pages/add-coffre';
+import rapportArrestation from '../pages/rapport-arrestation';
 
 
 export const routes = [
@@ -81,6 +82,12 @@ export const routes = [
         path: '/taj/:id',
         props: true,
         component: Casier
+    },
+    {
+        name: 'rapport-arrestation',
+        path: '/rapport-arrestation',
+        props: true,
+        component: rapportArrestation
     }
 ];
 

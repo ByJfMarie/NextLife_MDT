@@ -72,7 +72,7 @@
                                     <p>{{item.nom}}</p>
                                     <p>X {{item.quantity}}</p>
                                 </div>
-                                <button class="addToCart" v-on:click="delete(item.nom)" style="justify-self: flex-end;"></button>
+                                <button class="addToCart" v-on:click="deleteItem(item.id)" style="justify-self: flex-end;"></button>
                             </div>
                         </div>
                     </div>
@@ -84,8 +84,9 @@
                                     <p>{{item.nom}}</p>
                                     <p>X {{item.quantity}}</p>
                                 </div>
-                                <button class="addToCart" v-on:click="delete(item.nom)" style="justify-self: flex-end;"></button>
-                            </div>
+                                    <button class="addToCart"  v-on:click="deleteItem(item.id)" style="justify-self: flex-end;"></button>
+
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -118,9 +119,16 @@ export default {
             bracelet: null,
             coffreO: null,
             coffreW: null,
+            item_id: null,
         }
     },
     methods: {
+        deleteItem(data){
+            this.$axios.delete('/api/coffre/' + data).then(response =>{
+                alert(response.data.success);
+                window.location.href = "/taj/" + this.id;
+            })
+        },
         modifyValue(){
             var upCitoyen = new Object;
             
@@ -128,6 +136,7 @@ export default {
             upCitoyen.weaponLicense = this.weaponLicense;
             upCitoyen.isWanted = this.isWanted;
             upCitoyen.isSummoned = this.isSummoned;
+            
 
             this.$axios.put('/api/citoyens/' + this.id, upCitoyen).then(response => {
                 window.location.href = "/taj/" + this.id;
@@ -147,25 +156,23 @@ export default {
             this.$axios.delete('/api/bracelet/' +this.bracelet.id).then(response =>{
                 window.location.href = "/taj/" + this.id;
             })
+            }
+            
+            
+            
         },
-        delete(data){
-            console.log(data);
-        }
-
-
-    },
-    async created() {
-        this.id = this.$route.params.id;
-
+        async created() {
+            this.id = this.$route.params.id;
+            
         if (this.id != null) {
             await this.$axios
             .get('/api/citoyens/' + this.id)
             .then(response => {
-            // JSON responses are automatically parsed.
-
+                // JSON responses are automatically parsed.
+                
                 this.citoyen = response.data;
             })
-
+            
             if (this.citoyen.driveLicense == 1) {
                 this.driveLicense = true;
             }

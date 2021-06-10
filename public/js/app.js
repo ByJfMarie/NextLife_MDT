@@ -17410,12 +17410,21 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       isSummoned: null,
       bracelet: null,
       coffreO: null,
-      coffreW: null
+      coffreW: null,
+      item_id: null
     };
   },
   methods: {
-    modifyValue: function modifyValue() {
+    deleteItem: function deleteItem(data) {
       var _this = this;
+
+      this.$axios["delete"]('/api/coffre/' + data).then(function (response) {
+        alert(response.data.success);
+        window.location.href = "/taj/" + _this.id;
+      });
+    },
+    modifyValue: function modifyValue() {
+      var _this2 = this;
 
       var upCitoyen = new Object();
       upCitoyen.driveLicense = this.driveLicense;
@@ -17423,97 +17432,94 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       upCitoyen.isWanted = this.isWanted;
       upCitoyen.isSummoned = this.isSummoned;
       this.$axios.put('/api/citoyens/' + this.id, upCitoyen).then(function (response) {
-        window.location.href = "/taj/" + _this.id;
+        window.location.href = "/taj/" + _this2.id;
       });
     },
     encodeBracelet: function encodeBracelet() {
-      var _this2 = this;
+      var _this3 = this;
 
       var newBracelet = new Object();
       newBracelet.id = this.id;
       this.$axios.post('/api/bracelet', newBracelet).then(function (response) {
-        window.location.href = "/taj/" + _this2.id;
-      });
-    },
-    destroyBracelet: function destroyBracelet() {
-      var _this3 = this;
-
-      this.$axios["delete"]('/api/bracelet/' + this.bracelet.id).then(function (response) {
         window.location.href = "/taj/" + _this3.id;
       });
     },
-    "delete": function _delete(data) {
-      console.log(data);
+    destroyBracelet: function destroyBracelet() {
+      var _this4 = this;
+
+      this.$axios["delete"]('/api/bracelet/' + this.bracelet.id).then(function (response) {
+        window.location.href = "/taj/" + _this4.id;
+      });
     }
   },
   created: function created() {
-    var _this4 = this;
+    var _this5 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _this4.id = _this4.$route.params.id;
+              _this5.id = _this5.$route.params.id;
 
-              if (!(_this4.id != null)) {
+              if (!(_this5.id != null)) {
                 _context.next = 16;
                 break;
               }
 
               _context.next = 4;
-              return _this4.$axios.get('/api/citoyens/' + _this4.id).then(function (response) {
+              return _this5.$axios.get('/api/citoyens/' + _this5.id).then(function (response) {
                 // JSON responses are automatically parsed.
-                _this4.citoyen = response.data;
+                _this5.citoyen = response.data;
               });
 
             case 4:
-              if (_this4.citoyen.driveLicense == 1) {
-                _this4.driveLicense = true;
+              if (_this5.citoyen.driveLicense == 1) {
+                _this5.driveLicense = true;
               } else {
-                _this4.driveLicense = false;
+                _this5.driveLicense = false;
               }
 
-              if (_this4.citoyen.weaponLicense == 1) {
-                _this4.weaponLicense = true;
+              if (_this5.citoyen.weaponLicense == 1) {
+                _this5.weaponLicense = true;
               } else {
-                _this4.weaponLicense = false;
+                _this5.weaponLicense = false;
               }
 
-              if (_this4.citoyen.isWanted == 1) {
-                _this4.isWanted = true;
+              if (_this5.citoyen.isWanted == 1) {
+                _this5.isWanted = true;
               } else {
-                _this4.isWanted = false;
+                _this5.isWanted = false;
               }
 
-              if (_this4.citoyen.isSummoned == 1) {
-                _this4.isSummoned = true;
+              if (_this5.citoyen.isSummoned == 1) {
+                _this5.isSummoned = true;
               } else {
-                _this4.isSummoned = false;
+                _this5.isSummoned = false;
               }
 
               _context.next = 10;
-              return _this4.$axios.get('/api/vehicules?proprietaire=' + _this4.id).then(function (response) {
+              return _this5.$axios.get('/api/vehicules?proprietaire=' + _this5.id).then(function (response) {
                 // JSON responses are automatically parsed.
-                _this4.vehicules_citoyen = response.data;
+                _this5.vehicules_citoyen = response.data;
               });
 
             case 10:
               _context.next = 12;
-              return _this4.$axios.get('/api/coffre?id_citoyenW=' + _this4.id).then(function (response) {
-                _this4.coffreW = response.data;
+              return _this5.$axios.get('/api/coffre?id_citoyenW=' + _this5.id).then(function (response) {
+                _this5.coffreW = response.data;
               });
 
             case 12:
               _context.next = 14;
-              return _this4.$axios.get('/api/coffre?id_citoyenO=' + _this4.id).then(function (response) {
-                _this4.coffreO = response.data;
+              return _this5.$axios.get('/api/coffre?id_citoyenO=' + _this5.id).then(function (response) {
+                _this5.coffreO = response.data;
               });
 
             case 14:
               _context.next = 16;
-              return _this4.$axios.get('/api/bracelet?citoyen=' + _this4.id).then(function (response) {
-                _this4.bracelet = response.data[0];
+              return _this5.$axios.get('/api/bracelet?citoyen=' + _this5.id).then(function (response) {
+                _this5.bracelet = response.data[0];
               });
 
             case 16:
@@ -17560,6 +17566,79 @@ __webpack_require__.r(__webpack_exports__);
       this.$axios.post('/api/access_token', newAccessToken).then(function (response) {
         alert("Voici l'Access Token : " + response.data.token);
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-arrestation.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-arrestation.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      date: null,
+      time: null,
+      addresse_pdp: "Mission Row",
+      date_rapport: null,
+      id: null,
+      name: null,
+      idCitoyen: null,
+      dataCitoyen: null,
+      idAmende: null,
+      dataAmende: null
+    };
+  },
+  methods: {
+    rechercheCitoyen: function rechercheCitoyen() {
+      var _this = this;
+
+      this.$axios.get('/api/citoyens/' + this.idCitoyen).then(function (response) {
+        _this.dataCitoyen = response.data;
+        console.log(_this.dataCitoyen);
+      });
+    }
+  },
+  beforeRouteEnter: function beforeRouteEnter(to, from, next) {
+    if (!window.Laravel.isLoggedin) {
+      window.location.href = "/";
+    }
+
+    next();
+  },
+  created: function created() {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1;
+    var yyyy = today.getFullYear();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+
+    if (dd < 10) {
+      dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+
+    today = yyyy + '-' + mm + '-' + dd;
+    this.time = hours + ':' + minutes;
+    this.date = today;
+    this.date_rapport = today;
+
+    if (window.Laravel.user) {
+      this.id = window.Laravel.user.id;
+      this.name = window.Laravel.user.name;
     }
   }
 });
@@ -19034,7 +19113,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
       "class": "addToCart",
       onClick: function onClick($event) {
-        return delete item.nom;
+        return $options.deleteItem(item.id);
       },
       style: {
         "justify-self": "flex-end"
@@ -19052,7 +19131,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
       "class": "addToCart",
       onClick: function onClick($event) {
-        return delete item.nom;
+        return $options.deleteItem(item.id);
       },
       style: {
         "justify-self": "flex-end"
@@ -19130,6 +19209,92 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+  "for": "recherche_citoyen"
+}, "Recherche un Citoyen", -1
+/* HOISTED */
+);
+
+var _hoisted_2 = {
+  key: 0
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "date",
+    name: "test",
+    id: "test",
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.date = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.date]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "time",
+    name: "test1",
+    id: "test1",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return $data.time = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.time]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    name: "addresse_pdp",
+    id: "addresse_pdp",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $data.addresse_pdp = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.addresse_pdp]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "date",
+    name: "date_rapport",
+    id: "date_rapport",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.date_rapport = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.date_rapport]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.name), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "text",
+    name: "recherche_citoyen",
+    id: "recherche_citoyen",
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $data.idCitoyen = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.idCitoyen]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[6] || (_cache[6] = function () {
+      return $options.rechercheCitoyen && $options.rechercheCitoyen.apply($options, arguments);
+    })
+  }, "Recherche")]), $data.dataCitoyen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.prenom) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.nom), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.adresse) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.civilite), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.telephone) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.type) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.dateDeNaissance), 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -19200,7 +19365,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "routes": () => (/* binding */ routes),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var _pages_Home__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pages/Home */ "./resources/js/pages/Home.vue");
 /* harmony import */ var _pages_About__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pages/About */ "./resources/js/pages/About.vue");
 /* harmony import */ var _pages_Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pages/Register */ "./resources/js/pages/Register.vue");
@@ -19214,6 +19379,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_casier__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pages/casier */ "./resources/js/pages/casier.vue");
 /* harmony import */ var _pages_etat_major__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../pages/etat-major */ "./resources/js/pages/etat-major.vue");
 /* harmony import */ var _pages_add_coffre__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../pages/add-coffre */ "./resources/js/pages/add-coffre.vue");
+/* harmony import */ var _pages_rapport_arrestation__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../pages/rapport-arrestation */ "./resources/js/pages/rapport-arrestation.vue");
+
 
 
 
@@ -19281,9 +19448,14 @@ var routes = [{
   path: '/taj/:id',
   props: true,
   component: _pages_casier__WEBPACK_IMPORTED_MODULE_10__.default
+}, {
+  name: 'rapport-arrestation',
+  path: '/rapport-arrestation',
+  props: true,
+  component: _pages_rapport_arrestation__WEBPACK_IMPORTED_MODULE_13__.default
 }];
-var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_13__.createRouter)({
-  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_13__.createWebHistory)(),
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_14__.createWebHistory)(),
   routes: routes
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
@@ -38309,6 +38481,32 @@ _etat_major_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__f
 
 /***/ }),
 
+/***/ "./resources/js/pages/rapport-arrestation.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/pages/rapport-arrestation.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _rapport_arrestation_vue_vue_type_template_id_c2cbc5e8_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr */ "./resources/js/pages/rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr");
+/* harmony import */ var _rapport_arrestation_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rapport-arrestation.vue?vue&type=script&lang=js */ "./resources/js/pages/rapport-arrestation.vue?vue&type=script&lang=js");
+
+
+
+_rapport_arrestation_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _rapport_arrestation_vue_vue_type_template_id_c2cbc5e8_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_rapport_arrestation_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/pages/rapport-arrestation.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_rapport_arrestation_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/App.vue?vue&type=script&lang=js":
 /*!******************************************************!*\
   !*** ./resources/js/App.vue?vue&type=script&lang=js ***!
@@ -38533,6 +38731,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/rapport-arrestation.vue?vue&type=script&lang=js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/pages/rapport-arrestation.vue?vue&type=script&lang=js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_arrestation_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_arrestation_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./rapport-arrestation.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-arrestation.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/App.vue?vue&type=template&id=f348271a&scoped=true&class=back":
 /*!***********************************************************************************!*\
   !*** ./resources/js/App.vue?vue&type=template&id=f348271a&scoped=true&class=back ***!
@@ -38753,6 +38967,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_etat_major_vue_vue_type_template_id_0f324077_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_etat_major_vue_vue_type_template_id_0f324077_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./etat-major.vue?vue&type=template&id=0f324077&lang=fr */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/etat-major.vue?vue&type=template&id=0f324077&lang=fr");
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/pages/rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_arrestation_vue_vue_type_template_id_c2cbc5e8_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_arrestation_vue_vue_type_template_id_c2cbc5e8_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-arrestation.vue?vue&type=template&id=c2cbc5e8&lang=fr");
 
 
 /***/ }),
