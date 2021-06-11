@@ -6,14 +6,14 @@
         <input type="date" name="date_rapport" id="date_rapport" v-model="date_rapport">
         <p>{{name}}</p>
         <div>
-            <label for="recherche_citoyen">Recherche un Citoyen</label>
-            <input type="text" name="recherche_citoyen" id="recherche_citoyen" v-model="idCitoyen">
-            <button v-on:click="rechercheCitoyen">Recherche</button>
+            <label for="recherche_citoyen">Recherche l'amande lié</label>
+            <input type="text" name="recherche_amende" id="recherche_amende" v-model="idAmende">
+            <button v-on:click="rechercheAmende">Recherche</button>
         </div>
-        <div v-if="dataCitoyen">
-            <p>{{dataCitoyen.prenom}} {{dataCitoyen.nom}}</p>
-            <p>{{dataCitoyen.adresse}} {{dataCitoyen.civilite}}</p>
-            <p>{{dataCitoyen.telephone}} {{dataCitoyen.type}} {{dataCitoyen.dateDeNaissance}}</p>
+        <div v-if="dataAmende">
+            <p>{{dataAmende.prenom}} {{dataAmende.nom}}</p>
+            <p>{{dataAmende.adresse}} {{dataAmende.civilite}}</p>
+            <p>{{dataAmende.telephone}} {{dataAmende.type}} {{dataAmende.dateDeNaissance}}</p>
         </div>
     </div>
 </template>
@@ -35,10 +35,10 @@ export default {
         }
     },
     methods: {
-        rechercheCitoyen(){
-            this.$axios.get('/api/citoyens/' + this.idCitoyen).then(response => {
-                this.dataCitoyen = response.data;
-                console.log(this.dataCitoyen);
+        rechercheAmende(){
+            this.$axios.get('/api/historique_amendes/' + this.idAmende).then(response => {
+                this.dataAmende = response.data[0];
+                console.log(this.dataAmende);
             })
         }
     },

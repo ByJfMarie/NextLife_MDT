@@ -17363,7 +17363,9 @@ __webpack_require__.r(__webpack_exports__);
         newAmende.descriptif[i] = this.cart[i].descritpion;
       }
 
-      newAmende.descriptif = JSON.stringify(newAmende.descriptif);
+      console.log(newAmende.descriptif); //newAmende.descriptif = JSON.stringify(newAmende.descriptif);
+      //console.log(newAmende.descriptif);
+
       this.$axios.post('/api/historique_amendes', newAmende);
       this.cart = [];
     }
@@ -17599,12 +17601,12 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    rechercheCitoyen: function rechercheCitoyen() {
+    rechercheAmende: function rechercheAmende() {
       var _this = this;
 
-      this.$axios.get('/api/citoyens/' + this.idCitoyen).then(function (response) {
-        _this.dataCitoyen = response.data;
-        console.log(_this.dataCitoyen);
+      this.$axios.get('/api/historique_amendes/' + this.idAmende).then(function (response) {
+        _this.dataAmende = response.data[0];
+        console.log(_this.dataAmende);
       });
     }
   },
@@ -19225,7 +19227,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "recherche_citoyen"
-}, "Recherche un Citoyen", -1
+}, "Recherche l'amande lié", -1
 /* HOISTED */
 );
 
@@ -19273,22 +19275,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "text",
-    name: "recherche_citoyen",
-    id: "recherche_citoyen",
+    name: "recherche_amende",
+    id: "recherche_amende",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return $data.idCitoyen = $event;
+      return $data.idAmende = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.idCitoyen]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.idAmende]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function () {
-      return $options.rechercheCitoyen && $options.rechercheCitoyen.apply($options, arguments);
+      return $options.rechercheAmende && $options.rechercheAmende.apply($options, arguments);
     })
-  }, "Recherche")]), $data.dataCitoyen ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.prenom) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.nom), 1
+  }, "Recherche")]), $data.dataAmende ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.prenom) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.nom), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.adresse) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.civilite), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.adresse) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.civilite), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.telephone) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.type) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataCitoyen.dateDeNaissance), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.telephone) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.type) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.dateDeNaissance), 1
   /* TEXT */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }

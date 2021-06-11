@@ -118,7 +118,11 @@ export default {
                 newAmende.descriptif[i] = this.cart[i].descritpion;
             }
 
-            newAmende.descriptif = JSON.stringify(newAmende.descriptif);
+            console.log(newAmende.descriptif);
+
+            //newAmende.descriptif = JSON.stringify(newAmende.descriptif);
+
+            //console.log(newAmende.descriptif);
 
             this.$axios.post('/api/historique_amendes', newAmende);
 

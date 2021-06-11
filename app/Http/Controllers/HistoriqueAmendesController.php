@@ -14,7 +14,7 @@ class HistoriqueAmendesController extends Controller
      */
     public function index()
     {
-        //
+        return HistoriqueAmendes::all();
     }
 
     /**
@@ -35,11 +35,20 @@ class HistoriqueAmendesController extends Controller
      */
     public function store(Request $request)
     {
-        if(HistoriqueAmendes::create($request->all())){
-            return response()->json([
-                'success' => 'Amendes enregistrée avec succés'
-            ], 200);
-        }
+
+        $amende = new HistoriqueAmendes;
+
+        $amende->citoyen =  $request->get('citoyen');
+        $amende->prix =  $request->get('prix');
+        $amende->descriptif =  json_encode($request->get('descriptif'));
+
+        $amende->save();
+
+        // if(HistoriqueAmendes::create($request->all())){
+        //     return response()->json([
+        //         'success' => 'Amendes enregistrée avec succés'
+        //     ], 200);
+        // }
     }
 
     /**
@@ -48,9 +57,34 @@ class HistoriqueAmendesController extends Controller
      * @param  \App\Models\HistoriqueAmendes  $historiqueAmendes
      * @return \Illuminate\Http\Response
      */
-    public function show(HistoriqueAmendes $historiqueAmendes)
+    public function show(HistoriqueAmendes $historique_amende)
     {
-        //
+        $amende = HistoriqueAmendes::select(
+
+            "historique_amendes.id", 
+            "historique_amendes.prix",
+            "historique_amendes.descriptif",
+            "citoyens.nom as nom",
+            "citoyens.prenom as prenom",
+            "citoyens.dateDeNaissance as dateDeNaissance",
+            "citoyens.civilite as civilite",
+            "citoyens.type as type",
+            "citoyens.adresse as adresse",
+            "citoyens.telephone as telephone"
+
+
+        )
+
+        ->join("citoyens", "citoyens.id", "=", "historique_amendes.citoyen")
+
+        ->where("historique_amendes.id", "=", $historique_amende->id)
+
+        ->get();
+
+        $test = $amende + json_decode($historique_amende->descriptif);
+
+
+        return $test;
     }
 
     /**
