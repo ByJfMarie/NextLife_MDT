@@ -18501,7 +18501,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     /* STABLE */
 
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/taj",
+    to: "/rapport-arrestation",
     "class": "nav-item nav-link"
   }, {
     "default": _withId(function () {
