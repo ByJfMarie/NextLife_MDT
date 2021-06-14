@@ -61,7 +61,8 @@ class HistoriqueAmendesController extends Controller
     {
         $amende = HistoriqueAmendes::select(
 
-            "historique_amendes.id", 
+            "historique_amendes.id",
+            "historique_amendes.citoyen as id_citoyen",
             "historique_amendes.prix",
             "historique_amendes.descriptif",
             "citoyens.nom as nom",
@@ -81,10 +82,9 @@ class HistoriqueAmendesController extends Controller
 
         ->get();
 
-        $test = $amende + json_decode($historique_amende->descriptif);
 
 
-        return $test;
+        return $amende; 
     }
 
     /**

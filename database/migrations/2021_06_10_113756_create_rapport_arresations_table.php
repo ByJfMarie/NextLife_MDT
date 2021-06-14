@@ -19,11 +19,15 @@ class CreateRapportArresationsTable extends Migration
             $table->string('heure_arrestation');
             $table->string('addresse_pdp');
             $table->date('date_rapport');
-            $table->text('descriprion');
+            $table->text('description');
             $table->unsignedBigInteger('id_police');
             $table->unsignedBigInteger('id_citoyen');
             $table->unsignedBigInteger('id_amende');
             $table->timestamps();
+
+            $table->foreign('id_police')->references('id')->on('users');
+            $table->foreign('id_citoyen')->references('id')->on('citoyens');
+            $table->foreign('id_amende')->references('id')->on('historique_amendes');
         });
     }
 

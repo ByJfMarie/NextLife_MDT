@@ -11,6 +11,7 @@ use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\AccessTokenController;
 use App\Http\Controllers\ListeAmendesController;
 use App\Http\Controllers\HistoriqueAmendesController;
+use App\Http\Controllers\RapportArresationController;
 
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
@@ -26,3 +27,4 @@ Route::apiResource('bracelet', BraceletController::class);
 Route::apiResource('grades', GradeController::class);
 Route::apiResource('access_token', AccessTokenController::class);
 Route::apiResource('coffre', CoffreController::class);
+Route::apiResource('rapport_arrestation', RapportArresationController::class);

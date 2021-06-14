@@ -17597,7 +17597,8 @@ __webpack_require__.r(__webpack_exports__);
       idCitoyen: null,
       dataCitoyen: null,
       idAmende: null,
-      dataAmende: null
+      dataAmende: null,
+      description_text: null
     };
   },
   methods: {
@@ -17606,8 +17607,27 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$axios.get('/api/historique_amendes/' + this.idAmende).then(function (response) {
         _this.dataAmende = response.data[0];
-        console.log(_this.dataAmende);
+        _this.dataAmende.descriptif = JSON.parse(_this.dataAmende.descriptif);
+        console.log(_this.dataAmende.descriptif);
       });
+    },
+    postRapport: function postRapport() {
+      if (this.dataAmende != null) {
+        var newRapport = new Object();
+        newRapport.date_arrestation = this.date;
+        newRapport.heure_arrestation = this.time;
+        newRapport.addresse_pdp = this.addresse_pdp;
+        newRapport.date_rapport = this.date_rapport;
+        newRapport.description = this.description_text;
+        newRapport.id_police = this.id;
+        newRapport.idCitoyen = this.dataAmende.id_citoyen;
+        newRapport.id_amende = this.dataAmende.id;
+        this.$axios.post('/api/rapport_arrestation', newRapport).then(function (response) {
+          alert(response.data.success);
+        });
+      } else {
+        alert('Merci de Sélectionner l\'amende liée au rapport');
+      }
     }
   },
   beforeRouteEnter: function beforeRouteEnter(to, from, next) {
@@ -19227,12 +19247,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "recherche_citoyen"
-}, "Recherche l'amande lié", -1
+}, "Recherche l'amende lié", -1
 /* HOISTED */
 );
 
 var _hoisted_2 = {
   key: 0
+};
+var _hoisted_3 = {
+  "class": "amende"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
@@ -19292,7 +19315,31 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.telephone) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.type) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.dateDeNaissance), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dataAmende.descriptif, function (fait) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(fait), 1
+    /* TEXT */
+    )]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.dataAmende.prix) + " $", 1
+  /* TEXT */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+    name: "description",
+    id: "description",
+    cols: "30",
+    rows: "10",
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $data.description_text = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.description_text]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+    type: "button",
+    value: "Signer et Soumettre le rapport",
+    onClick: _cache[8] || (_cache[8] = function () {
+      return $options.postRapport && $options.postRapport.apply($options, arguments);
+    })
+  })]);
 }
 
 /***/ }),
