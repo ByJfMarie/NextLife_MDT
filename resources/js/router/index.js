@@ -14,6 +14,7 @@ import Casier from '../pages/casier';
 import EtatMajor from '../pages/etat-major';
 import addCoffre from '../pages/add-coffre';
 import rapportArrestation from '../pages/rapport-arrestation';
+import rapportAgent from '../pages/rapport-agent';
 
 
 export const routes = [
@@ -88,7 +89,14 @@ export const routes = [
         path: '/rapport-arrestation',
         props: true,
         component: rapportArrestation
+    },
+    {
+        name: 'rapport-agent',
+        path: '/rapport-agent',
+        props: true,
+        component: rapportAgent
     }
+
 ];
 
 const router = createRouter({
