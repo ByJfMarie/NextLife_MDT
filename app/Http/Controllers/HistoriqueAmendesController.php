@@ -14,7 +14,21 @@ class HistoriqueAmendesController extends Controller
      */
     public function index()
     {
-        return HistoriqueAmendes::all();
+        if (request('top')){
+            
+            $amende = HistoriqueAmendes::select(
+
+                "historique_amendes.id",
+            )
+            ->orderBy('historique_amendes.id', 'desc')
+            ->take(request('top'))
+            ->get();
+
+            return $amende;
+
+        }else {
+            return HistoriqueAmendes::all();
+        }
     }
 
     /**

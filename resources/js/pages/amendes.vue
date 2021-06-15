@@ -118,13 +118,14 @@ export default {
                 newAmende.descriptif[i] = this.cart[i].descritpion;
             }
 
-            console.log(newAmende.descriptif);
-
             //newAmende.descriptif = JSON.stringify(newAmende.descriptif);
 
             //console.log(newAmende.descriptif);
 
             this.$axios.post('/api/historique_amendes', newAmende);
+            this.$axios.get('/api/historique_amendes?top=1').then(response =>{
+                alert('Voici l\'id de l\'amende crée : '+response.data[0].id);
+            })
 
             this.cart = [];
             
