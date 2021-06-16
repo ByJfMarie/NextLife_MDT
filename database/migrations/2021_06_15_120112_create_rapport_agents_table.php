@@ -16,7 +16,7 @@ class CreateRapportAgentsTable extends Migration
         Schema::create('rapport_agents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_agent');
-            $table->unsignedBigInteger('id_rapport-arrestation')->nullable();
+            $table->unsignedBigInteger('id_rapport_arrestation')->nullable();
             $table->date('date_fait');
             $table->time('heure_fait');
             $table->text('description');
@@ -24,7 +24,7 @@ class CreateRapportAgentsTable extends Migration
 
 
             $table->foreign('id_agent')->references('id')->on('users');
-            $table->foreign('id_rapport-arrestation')->references('id')->on('rapport_arresations');
+            $table->foreign('id_rapport_arrestation')->references('id')->on('rapport_arresations');
         });
     }
 

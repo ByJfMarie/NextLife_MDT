@@ -11,7 +11,7 @@ class RapportAgent extends Model
 
     protected $fillable = [
         'id_agent',
-        'id_rapport-arrestation',
+        'id_rapport_arrestation',
         'date_fait',
         'heure_fait',
         'description'

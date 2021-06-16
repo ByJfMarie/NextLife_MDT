@@ -10,6 +10,7 @@ use App\Http\Controllers\BraceletController;
 use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\AccessTokenController;
 use App\Http\Controllers\ListeAmendesController;
+use App\Http\Controllers\RapportAgentController;
 use App\Http\Controllers\HistoriqueAmendesController;
 use App\Http\Controllers\RapportArresationController;
 
@@ -28,3 +29,4 @@ Route::apiResource('grades', GradeController::class);
 Route::apiResource('access_token', AccessTokenController::class);
 Route::apiResource('coffre', CoffreController::class);
 Route::apiResource('rapport_arrestation', RapportArresationController::class);
+Route::apiResource('rapport_agent', RapportAgentController::class);

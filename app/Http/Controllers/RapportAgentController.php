@@ -35,7 +35,19 @@ class RapportAgentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newRapport = new RapportAgent;
+                
+        $newRapport->date_fait = $request->get('date_fait');
+        $newRapport->heure_fait = $request->get('heure_fait');
+        $newRapport->description = $request->get('description');
+        $newRapport->id_agent = $request->get('id_agent');
+        $newRapport->id_rapport_arrestation = $request->get('id_rapport-arrestation');
+
+        if ($newRapport->save()) {
+            return response()->json([
+                         'success' => 'Rapport crée avec succés'
+            ], 200);
+        }
     }
 
     /**

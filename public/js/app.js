@@ -17592,10 +17592,37 @@ __webpack_require__.r(__webpack_exports__);
     return {
       date: null,
       time: null,
-      user: null
+      user: null,
+      description: null,
+      idAmende: null,
+      grade: null
     };
   },
+  methods: {
+    envoyerRapport: function envoyerRapport() {
+      console.log('test');
+      var newRapport = new Object();
+      newRapport.date_fait = this.date;
+      newRapport.heure_fait = this.time;
+      newRapport.description = this.description;
+      newRapport.id_agent = this.user.id;
+      newRapport.id_rapport_arrestation = this.idAmende;
+      this.$axios.post('api/rapport_agent', newRapport).then(function (response) {
+        alert(response.data.success);
+      });
+    }
+  },
   created: function created() {
+    var _this = this;
+
+    if (window.Laravel.user) {
+      this.user = window.Laravel.user;
+    }
+
+    this.$axios.get('/api/users/' + this.user.id).then(function (response) {
+      // JSON responses are automatically parsed.
+      _this.grade = response.data[0].grade;
+    });
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1;
@@ -17614,10 +17641,6 @@ __webpack_require__.r(__webpack_exports__);
     today = yyyy + '-' + mm + '-' + dd;
     this.time = hours + ':' + minutes;
     this.date = today;
-
-    if (window.Laravel.user) {
-      this.user = window.Laravel.user;
-    }
   }
 });
 
@@ -19280,10 +19303,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr":
-/*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19294,31 +19317,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
+var _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("data-v-8df4cbfe");
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-8df4cbfe");
+
+var _hoisted_1 = {
+  "class": "page"
+};
+var _hoisted_2 = {
+  "class": "container"
+};
+var _hoisted_3 = {
+  "class": "datetime"
+};
+var _hoisted_4 = {
+  "class": "amende"
+};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("label", {
   "for": "recherche_citoyen"
 }, "Arrestation lié aux faits : ", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1
-/* HOISTED */
-);
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
-  name: "description",
-  id: "description",
-  cols: "100",
-  rows: "30"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", null, "Soumettre le rapport", -1
-/* HOISTED */
-);
-
-function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "date",
     name: "date",
     id: "date",
@@ -19336,20 +19361,35 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.time]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.grade) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.name), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.time]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.grade) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.user.name), 1
   /* TEXT */
-  ), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     type: "text",
     name: "recherche_amende",
     id: "recherche_amende",
     placeholder: "Optionnel",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return _ctx.idAmende = $event;
+      return $data.idAmende = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, _ctx.idAmende]]), _hoisted_2, _hoisted_3, _hoisted_4]);
-}
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.idAmende]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("textarea", {
+    placeholder: "Détails des faits...",
+    name: "description",
+    id: "description",
+    cols: "120",
+    rows: "25",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return $data.description = $event;
+    })
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.description]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    onClick: _cache[5] || (_cache[5] = function () {
+      return $options.envoyerRapport && $options.envoyerRapport.apply($options, arguments);
+    })
+  }, "Soumettre le rapport")])]);
+});
 
 /***/ }),
 
@@ -19919,6 +19959,31 @@ ___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.c
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_assets_picture_image_icon_minus_7_pic_512x512_png__WEBPACK_IMPORTED_MODULE_2__.default);
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".citoyen-container[data-v-48c8adec] {\n  margin-top: 25vh;\n  width: 100%;\n  height: 75vh;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-around;\n  align-items: flex-end;\n}\n.citoyen-container .left[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  width: 20%;\n  height: 85%;\n}\n.citoyen-container .left .infos-citoyen[data-v-48c8adec] {\n  height: 45%;\n  border: 1px solid #AD9B3A;\n  display: flex;\n  justify-content: space-between;\n  flex-direction: column;\n}\n.citoyen-container .left .infos-citoyen .haut[data-v-48c8adec] {\n  display: flex;\n  justify-content: space-around;\n  height: 55%;\n  width: 100%;\n}\n.citoyen-container .left .infos-citoyen .haut p[data-v-48c8adec] {\n  margin-top: 5%;\n  color: white;\n  font-size: 20px;\n  font-family: 'Lato', sans-serif;\n}\n.citoyen-container .left .infos-citoyen .bas[data-v-48c8adec] {\n  height: 40%;\n  width: 100%;\n  display: flex;\n  font-family: 'Lato', sans-serif;\n  justify-content: space-around;\n}\n.citoyen-container .left .infos-citoyen .bas .bas-left[data-v-48c8adec], .citoyen-container .left .infos-citoyen .bas .bas-right[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n}\n.citoyen-container .left .infos-citoyen .bas p[data-v-48c8adec] {\n  color: white;\n  font-size: 16px;\n}\n.citoyen-container .left .infos-citoyen .bas .alert[data-v-48c8adec] {\n  color: red;\n  font-size: 27px;\n  -webkit-animation: clignote-48c8adec 1.5s infinite;\n          animation: clignote-48c8adec 1.5s infinite;\n}\n.citoyen-container .left .infos-citoyen .bas .convoque[data-v-48c8adec] {\n  color: #AD9B3A;\n  font-size: 23px;\n}\n@-webkit-keyframes clignote-48c8adec {\n50% {\n    opacity: 0;\n}\n}\n@keyframes clignote-48c8adec {\n50% {\n    opacity: 0;\n}\n}\n.citoyen-container .left .modifCheck[data-v-48c8adec] {\n  height: 45%;\n  border: 1px solid #AD9B3A;\n}\n.citoyen-container .left .modifCheck .formModifCheck[data-v-48c8adec] {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-around;\n}\n.citoyen-container .left .modifCheck .formModifCheck button[data-v-48c8adec] {\n  width: 100%;\n  font-family: 'Roboto', sans-serif;\n  color: #AEAEAE;\n  font-size: 23px;\n  font-weight: 600;\n  text-decoration: none;\n  border: 1px solid #C1BB4D;\n  width: 80%;\n  padding: 7px 0;\n  text-align: center;\n  background: transparent;\n}\n.citoyen-container .left .modifCheck .formModifCheck button[data-v-48c8adec]:hover {\n  opacity: 0.8;\n  color: #212332;\n  background-color: #C1BB4D;\n  cursor: pointer;\n}\n.citoyen-container .left .modifCheck .form-group[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  justify-content: space-around;\n  width: 70%;\n}\n.citoyen-container .left .modifCheck .form-group label[data-v-48c8adec] {\n  color: white;\n  font-family: 'Lato', sans-serif;\n  font-size: 18px;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec] {\n  -webkit-appearance: none;\n     -moz-appearance: none;\n          appearance: none;\n  height: 2em;\n  width: 4em;\n  background-color: #c2c2c2;\n  cursor: pointer;\n  border-radius: 1em;\n  position: relative;\n  transition: background-color 0.3s ease;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec]::before {\n  content: \"\";\n  height: 100%;\n  width: 50%;\n  background-color: white;\n  position: absolute;\n  border-radius: 50%;\n  border: #c2c2c2 solid 0.2em;\n  transition: transform 0.3s ease, border-color 0.3s ease;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec]:checked {\n  background-color: #AD9B3A;\n}\n.citoyen-container .left .modifCheck .form-group .switch[data-v-48c8adec]:checked::before {\n  border-color: #AD9B3A;\n  transform: translateX(100%);\n}\n.citoyen-container .right[data-v-48c8adec] {\n  align-self: center;\n  width: 70%;\n  height: 90%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n}\n.citoyen-container .right .container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 30%;\n  overflow-y: auto;\n}\n.citoyen-container .right .vehicules-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: center;\n  background: rgba(180, 175, 175, 0.04);\n  overflow: auto;\n}\n.citoyen-container .right .vehicules-container .card[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  background: rgba(180, 175, 175, 0.17);\n  margin-top: 2%;\n  width: 95%;\n  height: 20%;\n}\n.citoyen-container .right .vehicules-container .card[data-v-48c8adec]:hover {\n  scale: 1.02;\n  cursor: pointer;\n}\n.citoyen-container .right .vehicules-container .card .infos-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n  width: 100%;\n}\n.citoyen-container .right .vehicules-container .card .infos-container p[data-v-48c8adec] {\n  font-family: Roboto;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 20px;\n  line-height: 27px;\n  color: #EFEFEF;\n  margin-left: 3%;\n}\n.citoyen-container .right .saisie-container[data-v-48c8adec] {\n  border: none;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.citoyen-container .right .saisie-container .weapons-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 47%;\n  background: rgba(180, 175, 175, 0.04);\n  overflow: auto;\n}\n.citoyen-container .right .saisie-container .weapons-container .card[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  background: rgba(180, 175, 175, 0.17);\n  margin-top: 2%;\n  width: 95%;\n  height: 20%;\n}\n.citoyen-container .right .saisie-container .weapons-container .card .infos-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n}\n.citoyen-container .right .saisie-container .weapons-container .card .infos-container .p[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n  width: 70%;\n}\n.citoyen-container .right .saisie-container .weapons-container .card .infos-container .p p[data-v-48c8adec] {\n  font-family: Roboto;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 20px;\n  line-height: 27px;\n  color: #EFEFEF;\n  margin-left: 3%;\n}\n.citoyen-container .right .saisie-container .weapons-container .card .infos-container .addToCart[data-v-48c8adec] {\n  height: 20px;\n  width: 20px;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-color: transparent;\n  color: transparent;\n  background-size: cover;\n  border: none;\n  margin-right: 3%;\n}\n.citoyen-container .right .saisie-container .weapons-container .card .infos-container .addToCart[data-v-48c8adec]:hover {\n  cursor: pointer;\n  scale: 1.06;\n}\n.citoyen-container .right .saisie-container .objects-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 47%;\n  background: rgba(180, 175, 175, 0.04);\n  overflow: auto;\n}\n.citoyen-container .right .saisie-container .objects-container .card[data-v-48c8adec] {\n  display: flex;\n  align-items: center;\n  border: 1px solid #AD9B3A;\n  background: rgba(180, 175, 175, 0.17);\n  margin-top: 2%;\n  width: 95%;\n  height: 20%;\n}\n.citoyen-container .right .saisie-container .objects-container .card .infos-container[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n}\n.citoyen-container .right .saisie-container .objects-container .card .infos-container .p[data-v-48c8adec] {\n  display: flex;\n  flex-direction: row;\n  justify-content: flex-start;\n  align-items: center;\n  width: 70%;\n}\n.citoyen-container .right .saisie-container .objects-container .card .infos-container .p p[data-v-48c8adec] {\n  font-family: Roboto;\n  font-style: normal;\n  font-weight: normal;\n  font-size: 20px;\n  line-height: 27px;\n  color: #EFEFEF;\n  margin-left: 3%;\n}\n.citoyen-container .right .saisie-container .objects-container .card .infos-container .addToCart[data-v-48c8adec] {\n  height: 20px;\n  width: 20px;\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-color: transparent;\n  color: transparent;\n  background-size: cover;\n  border: none;\n  margin-right: 3%;\n}\n.citoyen-container .right .saisie-container .objects-container .card .infos-container .addToCart[data-v-48c8adec]:hover {\n  cursor: pointer;\n  scale: 1.06;\n}\n.citoyen-container .right .justice-container[data-v-48c8adec] {\n  border: none;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.citoyen-container .right .justice-container .casier-container[data-v-48c8adec] {\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 70%;\n}\n.citoyen-container .right .justice-container .bracelet-container[data-v-48c8adec] {\n  font-family: 'Lato', sans-serif;\n  border: 1px solid #AD9B3A;\n  height: 100%;\n  width: 25%;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n}\n.citoyen-container .right .justice-container .bracelet-container h1[data-v-48c8adec] {\n  color: white;\n  font-weight: 400;\n  font-size: 23px;\n}\n.citoyen-container .right .justice-container .bracelet-container p[data-v-48c8adec] {\n  color: #AD9B3A;\n  font-size: 23px;\n}\n.citoyen-container .right .justice-container .bracelet-container button[data-v-48c8adec] {\n  width: 100%;\n  font-family: 'Roboto', sans-serif;\n  color: #AEAEAE;\n  font-size: 23px;\n  font-weight: 600;\n  text-decoration: none;\n  border: 1px solid #C1BB4D;\n  width: 80%;\n  padding: 7px 0;\n  text-align: center;\n  background: transparent;\n}\n.citoyen-container .right .justice-container .bracelet-container button[data-v-48c8adec]:hover {\n  opacity: 0.8;\n  color: #212332;\n  background-color: #C1BB4D;\n  cursor: pointer;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+___CSS_LOADER_EXPORT___.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap);"]);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".container[data-v-8df4cbfe] {\n  margin-top: 25vh;\n  font-family: 'Lato', sans-serif;\n  width: 100%;\n  height: 72vh;\n  text-align: center;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n}\n.container #description[data-v-8df4cbfe] {\n  border: 1px solid #C1BB4D;\n  background: transparent;\n  color: white;\n  font-family: 'Lato',sans-serif;\n  font-size: 18px;\n}\n.container .datetime[data-v-8df4cbfe] {\n  display: flex;\n  justify-content: space-around;\n  width: 30%;\n  align-items: center;\n}\n.container .datetime #date[data-v-8df4cbfe], .container .datetime #time[data-v-8df4cbfe] {\n  border: 1px solid #C1BB4D;\n  background: transparent;\n  color: white;\n  font-weight: 600;\n  padding: 5px 5px;\n  font-size: 18px;\n}\n.container .datetime p[data-v-8df4cbfe] {\n  font-size: 20px;\n  font-weight: 500;\n  color: white;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -38670,12 +38735,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _rapport_agent_vue_vue_type_template_id_8df4cbfe_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr */ "./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr");
+/* harmony import */ var _rapport_agent_vue_vue_type_template_id_8df4cbfe_scoped_true_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr */ "./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr");
 /* harmony import */ var _rapport_agent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rapport-agent.vue?vue&type=script&lang=js */ "./resources/js/pages/rapport-agent.vue?vue&type=script&lang=js");
+/* harmony import */ var _rapport_agent_vue_vue_type_style_index_0_id_8df4cbfe_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true */ "./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true");
 
 
 
-_rapport_agent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _rapport_agent_vue_vue_type_template_id_8df4cbfe_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render
+
+;
+_rapport_agent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _rapport_agent_vue_vue_type_template_id_8df4cbfe_scoped_true_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render
+_rapport_agent_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__scopeId = "data-v-8df4cbfe"
 /* hot reload */
 if (false) {}
 
@@ -39191,18 +39260,18 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr":
-/*!************************************************************************************!*\
-  !*** ./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr ***!
-  \************************************************************************************/
+/***/ "./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr ***!
+  \************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_template_id_8df4cbfe_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_template_id_8df4cbfe_scoped_true_lang_fr__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_template_id_8df4cbfe_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&lang=fr");
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_template_id_8df4cbfe_scoped_true_lang_fr__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=template&id=8df4cbfe&scoped=true&lang=fr");
 
 
 /***/ }),
@@ -39405,6 +39474,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_casier_vue_vue_type_style_index_0_id_48c8adec_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_casier_vue_vue_type_style_index_0_id_48c8adec_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
 /* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_casier_vue_vue_type_style_index_0_id_48c8adec_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_casier_vue_vue_type_style_index_0_id_48c8adec_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true ***!
+  \*******************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_style_index_0_id_8df4cbfe_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-style-loader/index.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_style_index_0_id_8df4cbfe_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_style_index_0_id_8df4cbfe_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_style_index_0_id_8df4cbfe_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_use_3_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_rapport_agent_vue_vue_type_style_index_0_id_8df4cbfe_lang_scss_scoped_true__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
 /* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
 
 
@@ -43030,6 +43116,27 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! !../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
 var update = add("52331ba5", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12.use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12.use[3]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/pages/rapport-agent.vue?vue&type=style&index=0&id=8df4cbfe&lang=scss&scoped=true");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("3f0479c1", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
