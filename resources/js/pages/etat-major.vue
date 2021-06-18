@@ -54,6 +54,9 @@ export default {
             this.$axios.post('/api/liste_amendes', newAmende).then(response =>{
                 alert(response.data.success);
             })
+            this.description_amende = null;
+            this.prix_amende = null;
+
         }
     },
 }
