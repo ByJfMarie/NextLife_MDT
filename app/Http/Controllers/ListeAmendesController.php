@@ -35,7 +35,16 @@ class ListeAmendesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $amende = new ListeAmendes;
+
+        $amende->descritpion =  $request->get('description');
+        $amende->prix =  $request->get('prix');
+
+        if ($amende->save()) {
+            return response()->json([
+                         'success' => 'Amende crée avec succés'
+            ], 200);
+        }
     }
 
     /**
