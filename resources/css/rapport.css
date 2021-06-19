@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0px;
     padding: 0px;
 }
@@ -21,7 +21,7 @@ h2{
     color: rgb(255, 255, 255);
     font-size: 30px;
     font-family: 'Nunito Sans', sans-serif;
-}
+} */
 
 .formulaire{
     display: flex;
@@ -75,14 +75,14 @@ h2{
     width: 550px;
 }
 
-textarea{
+/* textarea{
     background-color: rgb(189, 99, 99);
     border: none;
     width: 870px;
     padding: 20px;
     height: 150px;
     resize: none;
-}
+} */
 
 .left{
     display: flex;
@@ -139,7 +139,7 @@ textarea{
     margin-left: 5%;
 }
 
-button{
+/* button{
     width: 90%;
     height: 100px;
     margin: 50px 5%;
@@ -152,4 +152,4 @@ button{
 
 button:hover{
     background: rgba(0, 0, 0, 0.3);
-}
+} */

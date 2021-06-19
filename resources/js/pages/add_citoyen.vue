@@ -58,7 +58,7 @@ export default {
 }
 }
 </script>
-<style lang="scss">
+<style lang="scss"  scoped>
     @import "../../css/create_form.scss";
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 </style>

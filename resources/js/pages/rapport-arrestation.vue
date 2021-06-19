@@ -199,7 +199,7 @@ export default {
     },
 }
 </script>
-<style scoped lang="css">
+<style scoped lang="css" scoped>
     /* @import '../../css/rapport.css'; */
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 </style>
