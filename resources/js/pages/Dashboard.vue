@@ -1,10 +1,10 @@
 <template>
-    <div class="dash-container">
-       <h1>Bonjour {{ grade }} {{ name }} - {{ matricule }}</h1>
+    <div class="dash-container" v-if="user">
+       <h1>Bonjour {{ user.grade }} {{ name }} - {{ matricule }}</h1>
        <div class="button-container">
            <router-link to="/siv" class="nav-item nav-link">SIV</router-link>
            <router-link to="/taj" class="nav-item nav-link">TAJ</router-link>
-           <router-link to="/etat-major" class="nav-item nav-link">Etat-Major</router-link>
+           <router-link to="/etat-major" class="nav-item nav-link" v-if="user.etat_major == 1">Etat-Major</router-link>
            <a class="logout" style="cursor: pointer;" @click="logout">Sortir du M.D.T / C.A.D</a>
         </div>
         <div class="infos-container">
@@ -62,6 +62,7 @@ export default {
             citoyens: null,
             bracelets: null,
             vehicules: null,
+            user: null,
         }
     },
     async created() {
@@ -69,6 +70,7 @@ export default {
             this.id = window.Laravel.user.id
             this.name = window.Laravel.user.name
             this.matricule = window.Laravel.user.matricule
+         
             
             await axios.get('/api/citoyens').then(response =>{
                 this.citoyens = response.data;
@@ -91,7 +93,7 @@ export default {
             .then(response => {
             // JSON responses are automatically parsed.
 
-                this.grade = response.data[0].grade;
+                this.user = response.data[0];
             })   
 
             
