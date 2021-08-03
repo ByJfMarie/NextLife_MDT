@@ -5,6 +5,7 @@
             <div class="search-container">
                     <router-link to="/taj/create" class="nav-item nav-link">Ajouter Casier</router-link>
                     <router-link to="/rapport-arrestation" class="nav-item nav-link">Rapport D'arrestation</router-link>
+                    <router-link to="/rapport-agent" class="nav-item nav-link">Rapport Agent</router-link>
                     <router-link to="/taj/amende" class="nav-item nav-link">Créer une amende</router-link>
                     <router-link to="add-coffre" class="nav-item nav-link">Ajouter au coffre des saisies</router-link>
                 
