@@ -103,7 +103,8 @@ class CitoyenController extends Controller
      */
     public function show(Citoyen $citoyen)
     {
-        return $citoyen->with(['rapport_arrestations'])->get();
+        return $citoyen->with(['rapport_arrestations'])
+                        ->where('id', $citoyen->id)->get();
     }
 
     /**
