@@ -14,7 +14,9 @@ class RapportArresationController extends Controller
      */
     public function index()
     {
-        //
+        $rapports = RapportArresation::with(['agent', 'citoyen', 'amende'])->get();
+
+        return $rapports;
     }
 
     /**
@@ -60,9 +62,9 @@ class RapportArresationController extends Controller
      * @param  \App\Models\RapportArresation  $rapportArresation
      * @return \Illuminate\Http\Response
      */
-    public function show(RapportArresation $rapportArresation)
+    public function show(RapportArresation $rapport_arrestation)
     {
-        //
+        return $rapport_arrestation->with(['agent', 'citoyen', 'amende'])->get(); 
     }
 
     /**

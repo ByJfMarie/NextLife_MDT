@@ -91,7 +91,16 @@
                     </div>
                 </div>
                 <div class="justice-container container">
-                    <div class="casier-container"></div>
+                    <div class="casier-container">
+                        <div class="card" v-for="rapport in citoyen.rapport_arrestations" >
+                        <div class="infos-container">
+                            <p>{{rapport.id}}</p>
+                            <p>{{rapport.date_arrestation}} - {{rapport.heure_arrestation}}</p>
+                            <p>Amende n°{{rapport.amende.id}} de {{rapport.amende.prix}} $</p>
+                            <p>{{rapport.description}}</p>
+                        </div>
+                        </div>
+                    </div>
                     <div v-if="bracelet != null" class="bracelet-container">
                         <h1>Numéro du série du Bracelet :</h1>
                         <p>{{bracelet.num_serie}}</p>
@@ -170,7 +179,8 @@ export default {
             .then(response => {
                 // JSON responses are automatically parsed.
                 
-                this.citoyen = response.data;
+                this.citoyen = response.data[0];
+                console.log(this.citoyen);
             })
             
             if (this.citoyen.driveLicense == 1) {

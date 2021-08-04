@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\RapportArresation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class HistoriqueAmendes extends Model
 {
@@ -14,4 +15,9 @@ class HistoriqueAmendes extends Model
         'descriptif',
         'prix'
     ];
+
+    public function rapport_arrestations()
+    {
+        return $this->hasOne(RapportArresation::class);
+    }
 }

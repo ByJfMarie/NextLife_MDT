@@ -14,7 +14,7 @@ class CitoyenController extends Controller
      */
     public function index()
     {
-        return Citoyen::all();
+        return Citoyen::with('rapport_arrestations')->get();
     }
 
     /**
@@ -103,7 +103,7 @@ class CitoyenController extends Controller
      */
     public function show(Citoyen $citoyen)
     {
-        return $citoyen;
+        return $citoyen->with(['rapport_arrestations'])->get();
     }
 
     /**

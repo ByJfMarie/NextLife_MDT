@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\RapportArresation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Citoyen extends Model
 {
@@ -23,6 +24,11 @@ class Citoyen extends Model
         'isWanted',
         'isSummoned' 
     ];
+
+    public function rapport_arrestations()
+    {
+        return $this->hasMany(RapportArresation::class, 'id_citoyen')->with(['agent', 'amende']);
+    }
 }
 
 
