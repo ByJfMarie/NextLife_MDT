@@ -97,7 +97,6 @@
                             <p>{{rapport.id}}</p>
                             <p>{{rapport.date_arrestation}} - {{rapport.heure_arrestation}}</p>
                             <p>Amende n°{{rapport.amende.id}} de {{rapport.amende.prix}} $</p>
-                            <p>{{rapport.description}}</p>
                         </div>
                         </div>
                     </div>
