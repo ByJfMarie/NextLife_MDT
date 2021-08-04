@@ -94,7 +94,7 @@
                     <div class="casier-container">
                         <div class="card" v-for="rapport in citoyen.rapport_arrestations" >
                         <div class="infos-container">
-                            <p>{{rapport.id}}</p>
+                            <p>Rapport d'arrestation n°{{rapport.id}}</p>
                             <p>{{rapport.date_arrestation}} - {{rapport.heure_arrestation}}</p>
                             <p>Amende n°{{rapport.amende.id}} de {{rapport.amende.prix}} $</p>
                         </div>
